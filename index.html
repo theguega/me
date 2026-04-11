@@ -1,387 +1,570 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Theo Guegan</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --rosewater: #dc8a78; --flamingo: #dd7878; --pink: #ea76cb;
-            --mauve: #8839ef; --red: #d20f39; --maroon: #e64553;
-            --peach: #fe640b; --yellow: #df8e1d; --green: #40a02b;
-            --teal: #179299; --sky: #04a5e5; --sapphire: #209fb5;
-            --blue: #1e66f5; --lavender: #7287fd;
-            --text: #4c4f69; --subtext1: #5c5f77; --subtext0: #6c6f85;
-            --overlay2: #7c7f93; --overlay1: #8c8fa1; --overlay0: #9ca0b0;
-            --surface2: #acb0be; --surface1: #bcc0cc; --surface0: #ccd0da;
-            --base: #eff1f5; --mantle: #e6e9ef; --crust: #dce0e8;
-        }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body {
-            background: var(--base);
-            color: var(--text);
-            font-family: 'JetBrains Mono', monospace;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-        nav {
-            height: 36px;
-            background: var(--crust);
-            border-bottom: 1px solid var(--surface0);
-            display: flex;
-            align-items: stretch;
-            padding: 0 16px;
-            font-size: 13px;
-            flex-shrink: 0;
-        }
-        nav a {
-            display: flex;
-            align-items: center;
-            padding: 0 16px;
-            color: var(--subtext0);
-            text-decoration: none;
-            transition: color 0.15s, background 0.15s;
-        }
-        nav a:hover { color: var(--text); background: var(--surface0); }
-        nav a.active {
-            color: var(--text);
-            background: var(--base);
-            border-bottom: 1px solid var(--base);
-            margin-bottom: -1px;
-        }
-        .page {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-            gap: 1.5rem;
-        }
-        .hero {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1.5rem;
-            text-align: center;
-        }
-        canvas {
-            image-rendering: pixelated;
-            image-rendering: crisp-edges;
-            border: 1px solid var(--surface0);
-            border-radius: 8px;
-            box-shadow: 0 2px 12px rgba(76, 79, 105, 0.06);
-        }
-        .hero-text {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-        .hero-text .name {
-            font-size: 1.8rem;
-            font-weight: 600;
-        }
-        .hero-text .title {
-            font-size: 0.95rem;
-            color: var(--subtext0);
-            font-weight: 400;
-        }
-        .divider {
-            width: 100%;
-            max-width: 480px;
-            height: 1px;
-            background: var(--surface0);
-        }
-        .social-links {
-            display: flex;
-            gap: 1.5rem;
-            align-items: center;
-        }
-        .social-links a {
-            color: var(--overlay1);
-            transition: color 0.2s, transform 0.15s;
-            display: flex;
-        }
-        .social-links a:hover {
-            color: var(--blue);
-            transform: translateY(-1px);
-        }
-        .social-links svg {
-            width: 20px;
-            height: 20px;
-            fill: currentColor;
-        }
-        .bio {
-            text-align: center;
-            color: var(--subtext0);
-            font-size: 0.85rem;
-            max-width: 480px;
-            line-height: 1.6;
-        }
-        footer {
-            padding: 1rem 2rem;
-            text-align: center;
-            font-size: 0.7rem;
-            color: var(--overlay0);
-            border-top: 1px solid var(--surface0);
-            flex-shrink: 0;
-        }
-        footer a { color: var(--blue); text-decoration: none; }
-        footer a:hover { text-decoration: underline; }
-        @media (max-width: 640px) {
-            canvas { width: 240px !important; height: 240px !important; }
-        }
-    </style>
-</head>
-<body>
-    <nav>
-        <a href="index.html" class="active">~</a>
-        <a href="blog.html">blog</a>
-        <a href="background.html">background</a>
-        <a href="projects.html">projects</a>
-    </nav>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>theguega/me</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            :root {
+                --rosewater: #dc8a78;
+                --flamingo: #dd7878;
+                --pink: #ea76cb;
+                --mauve: #8839ef;
+                --red: #d20f39;
+                --maroon: #e64553;
+                --peach: #fe640b;
+                --yellow: #df8e1d;
+                --green: #40a02b;
+                --teal: #179299;
+                --sky: #04a5e5;
+                --sapphire: #209fb5;
+                --blue: #1e66f5;
+                --lavender: #7287fd;
+                --text: #4c4f69;
+                --subtext1: #5c5f77;
+                --subtext0: #6c6f85;
+                --overlay2: #7c7f93;
+                --overlay1: #8c8fa1;
+                --overlay0: #9ca0b0;
+                --surface2: #acb0be;
+                --surface1: #bcc0cc;
+                --surface0: #ccd0da;
+                --base: #eff1f5;
+                --mantle: #e6e9ef;
+                --crust: #dce0e8;
+            }
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+            html {
+                scrollbar-width: none;
+                cursor:
+                    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='22' fill='none' stroke='%234c4f69' stroke-width='2' stroke-linecap='round'><line x1='8' y1='1' x2='8' y2='8'/><line x1='3' y1='8' x2='13' y2='8'/><line x1='3' y1='8' x2='3' y2='16'/><line x1='13' y1='8' x2='13' y2='16'/></svg>")
+                        8 14,
+                    auto;
+            }
+            html::-webkit-scrollbar {
+                display: none;
+            }
+            a,
+            button,
+            summary {
+                cursor:
+                    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='22' fill='none' stroke='%234c4f69' stroke-width='2' stroke-linecap='round'><line x1='8' y1='1' x2='8' y2='8'/><line x1='5' y1='8' x2='11' y2='8'/><line x1='5' y1='8' x2='5' y2='16'/><line x1='11' y1='8' x2='11' y2='16'/></svg>")
+                        8 14,
+                    pointer;
+            }
+            body {
+                background: var(--base);
+                color: var(--text);
+                font-family: "JetBrains Mono", monospace;
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+            }
+            nav {
+                height: 36px;
+                background: var(--crust);
+                border-bottom: 1px solid var(--surface0);
+                display: flex;
+                align-items: stretch;
+                padding: 0 16px;
+                font-size: 13px;
+                flex-shrink: 0;
+            }
+            nav a {
+                display: flex;
+                align-items: center;
+                padding: 0 16px;
+                color: var(--subtext0);
+                text-decoration: none;
+                transition:
+                    color 0.15s,
+                    background 0.15s;
+            }
+            nav a:hover {
+                color: var(--text);
+                background: var(--surface0);
+            }
+            nav a.active {
+                color: var(--text);
+                background: var(--base);
+                border-bottom: 1px solid var(--base);
+                margin-bottom: -1px;
+            }
+            .page {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                padding: 2rem;
+                gap: 1.5rem;
+            }
+            .hero {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 1.5rem;
+                text-align: center;
+            }
+            canvas {
+                image-rendering: pixelated;
+                image-rendering: crisp-edges;
+            }
+            .hero-text {
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+            }
+            .hero-text .name {
+                font-size: 1.8rem;
+                font-weight: 600;
+            }
+            .hero-text .title {
+                font-size: 0.95rem;
+                color: var(--subtext0);
+                font-weight: 400;
+            }
+            .divider {
+                width: 100%;
+                max-width: 480px;
+                height: 1px;
+                background: var(--surface0);
+            }
+            .social-links {
+                display: flex;
+                gap: 1.5rem;
+                align-items: center;
+            }
+            .social-links a {
+                color: var(--overlay1);
+                transition:
+                    color 0.2s,
+                    transform 0.15s;
+                display: flex;
+            }
+            .social-links a:hover {
+                color: var(--blue);
+                transform: translateY(-1px);
+            }
+            .social-links svg {
+                width: 20px;
+                height: 20px;
+                fill: currentColor;
+            }
+            .bio {
+                text-align: center;
+                color: var(--subtext0);
+                font-size: 0.85rem;
+                max-width: 480px;
+                line-height: 1.6;
+            }
+            footer {
+                padding: 1rem 2rem;
+                text-align: center;
+                font-size: 0.7rem;
+                color: var(--overlay0);
+                border-top: 1px solid var(--surface0);
+                flex-shrink: 0;
+            }
+            footer a {
+                color: var(--blue);
+                text-decoration: none;
+            }
+            footer a:hover {
+                text-decoration: underline;
+            }
+            @media (max-width: 640px) {
+                canvas {
+                    width: 240px !important;
+                    height: 240px !important;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <nav>
+            <a href="index.html" class="active">~</a>
+            <a href="blog.html">blog</a>
+            <a href="background.html">background</a>
+            <a href="projects.html">projects</a>
+        </nav>
 
-    <div class="page">
-        <div class="hero">
-            <div class="hero-text">
-                <span class="name">Theo Guegan</span>
-                <span class="title">Machine Learning Engineer</span>
+        <div class="page">
+            <div class="hero">
+                <div class="hero-text">
+                    <span class="name">Theo Guegan</span>
+                    <span class="title">Machine Learning Engineer</span>
+                </div>
+                <canvas
+                    id="robotCanvas"
+                    width="128"
+                    height="128"
+                    style="width: 320px; height: 320px"
+                ></canvas>
             </div>
-            <canvas id="robotCanvas" width="128" height="128" style="width: 320px; height: 320px"></canvas>
+
+            <div class="divider"></div>
+
+            <div class="social-links">
+                <a
+                    href="https://linkedin.com/in/guegan-theo"
+                    target="_blank"
+                    aria-label="LinkedIn"
+                >
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+                        />
+                    </svg>
+                </a>
+                <a
+                    href="https://github.com/theguega"
+                    target="_blank"
+                    aria-label="GitHub"
+                >
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+                        />
+                    </svg>
+                </a>
+                <a href="mailto:theo.guegan.perso@gmail.com" aria-label="Email">
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
+                        />
+                    </svg>
+                </a>
+                <a
+                    href="https://theguega.github.io/me/resume/resume.pdf"
+                    target="_blank"
+                    aria-label="Resume"
+                >
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"
+                        />
+                    </svg>
+                </a>
+            </div>
+
+            <div class="divider"></div>
+
+            <p class="bio">TBE</p>
         </div>
 
-        <div class="divider"></div>
+        <footer>
+            built by humans (probably). no copyright, feel free to copy
+            everything from
+            <a href="https://github.com/theguega/me">my repo</a> :)
+        </footer>
 
-        <div class="social-links">
-            <a href="https://linkedin.com/in/guegan-theo" target="_blank" aria-label="LinkedIn">
-                <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-            </a>
-            <a href="https://github.com/theguega" target="_blank" aria-label="GitHub">
-                <svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-            </a>
-            <a href="mailto:theo.guegan.perso@gmail.com" aria-label="Email">
-                <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-            </a>
-            <a href="https://theguega.github.io/me/resume/resume.pdf" target="_blank" aria-label="Resume">
-                <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
-            </a>
-        </div>
+        <script>
+            const canvas = document.getElementById("robotCanvas");
+            const ctx = canvas.getContext("2d");
+            ctx.imageSmoothingEnabled = false;
 
-        <div class="divider"></div>
+            const BASE_X = 30,
+                BASE_Y = 110;
+            const L1 = 42,
+                L2 = 38;
 
-        <p class="bio">TBE</p>
-    </div>
+            const C_BG = "#eff1f5",
+                C_GRID = "#e6e9ef";
+            const C_ARM = "#7c7f93",
+                C_ARM_HL = "#9ca0b0",
+                C_ARM_SH = "#5c5f77";
+            const C_JOINT = "#acb0be",
+                C_JOINT_DOT = "#8c8fa1";
+            const C_BASE_1 = "#6c6f85",
+                C_BASE_2 = "#4c4f69";
+            const C_BLOCK = "#d20f39",
+                C_BLOCK_HL = "#e64553",
+                C_BLOCK_SH = "#a50d2e";
+            const C_FLOOR = "#dce0e8";
+            const C_VLA_TEXT = "#1e66f5";
 
-    <footer>
-        no copyright, feel free to copy everything from <a href="https://github.com/theguega/me">my repo</a> if you are not able to develop your own simple website :)
-    </footer>
+            let time = 0;
+            let instructionText = "> SYS_INIT";
 
-    <script>
-        const canvas = document.getElementById('robotCanvas');
-        const ctx = canvas.getContext('2d');
-        ctx.imageSmoothingEnabled = false;
-
-        const BASE_X = 24, BASE_Y = 112, L1 = 40, L2 = 36;
-
-        const C_BG = '#0a0a0c', C_GRID = '#151518';
-        const C_ARM_HL = '#FFE347', C_ARM = '#E6BC00', C_ARM_SH = '#B39100';
-        const C_JOINT = '#E0E0E0';
-        const C_BASE_1 = '#2A2A2E', C_BASE_2 = '#1A1A1D';
-        const C_BLOCK_HL = '#F17C67', C_BLOCK = '#E74C3C', C_BLOCK_SH = '#C0392B';
-        const C_FLOOR = '#111115';
-        const C_VLA_TEXT = '#00FF41';
-
-        let time = 0;
-        let instructionText = '> SYS_INIT';
-
-        function easeInOutCubic(t) {
-            return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-        }
-
-        function drawSegment(x1, y1, x2, y2) {
-            ctx.strokeStyle = C_ARM_SH; ctx.lineWidth = 6; ctx.lineCap = 'round';
-            ctx.beginPath(); ctx.moveTo(x1, y1 + 1); ctx.lineTo(x2, y2 + 1); ctx.stroke();
-            ctx.strokeStyle = C_ARM; ctx.lineWidth = 5;
-            ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke();
-            ctx.strokeStyle = C_ARM_HL; ctx.lineWidth = 2;
-            ctx.beginPath(); ctx.moveTo(x1, y1 - 1); ctx.lineTo(x2, y2 - 1); ctx.stroke();
-        }
-
-        function drawJoint(x, y, size) {
-            ctx.fillStyle = C_BASE_2;
-            ctx.fillRect(Math.floor(x - size/2) - 1, Math.floor(y - size/2) - 1, size + 2, size + 2);
-            ctx.fillStyle = C_JOINT;
-            ctx.fillRect(Math.floor(x - size/2), Math.floor(y - size/2), size, size);
-            ctx.fillStyle = '#666';
-            ctx.fillRect(Math.floor(x) - 1, Math.floor(y) - 1, 2, 2);
-        }
-
-        function solveIK(targetX, targetY) {
-            let dx = targetX - BASE_X, dy = targetY - BASE_Y;
-            let dist = Math.sqrt(dx * dx + dy * dy);
-            if (dist > L1 + L2 - 0.1) {
-                let ratio = (L1 + L2 - 0.1) / dist;
-                dx *= ratio; dy *= ratio; dist = L1 + L2 - 0.1;
-            }
-            let cosT2 = (dist * dist - L1 * L1 - L2 * L2) / (2 * L1 * L2);
-            cosT2 = Math.max(-1, Math.min(1, cosT2));
-            let theta2 = Math.acos(cosT2);
-            let theta1 = Math.atan2(dy, dx) - Math.atan2(L2 * Math.sin(theta2), L1 + L2 * Math.cos(theta2));
-            return {
-                j1x: BASE_X + L1 * Math.cos(theta1),
-                j1y: BASE_Y + L1 * Math.sin(theta1),
-                j2x: BASE_X + L1 * Math.cos(theta1) + L2 * Math.cos(theta1 + theta2),
-                j2y: BASE_Y + L1 * Math.sin(theta1) + L2 * Math.sin(theta1 + theta2),
-                theta1, theta2
-            };
-        }
-
-        function drawFrame(t) {
-            ctx.fillStyle = C_BG;
-            ctx.fillRect(0, 0, 128, 128);
-            ctx.strokeStyle = C_GRID; ctx.lineWidth = 1;
-            for (let i = 0; i < 128; i += 16) {
-                ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i, 128); ctx.stroke();
-                ctx.beginPath(); ctx.moveTo(0, i); ctx.lineTo(128, i); ctx.stroke();
-            }
-            ctx.fillStyle = C_FLOOR;
-            ctx.fillRect(0, 114, 128, 14);
-            ctx.strokeStyle = '#333'; ctx.setLineDash([2, 2]);
-            ctx.strokeRect(41, 104, 14, 10); ctx.setLineDash([]);
-
-            let cycle = t % 500;
-            let targetX = 56, targetY = 60, clawOpen = 1;
-            let blockX = 91, blockY = 106, holding = false;
-
-            const pIdle = {x: 56, y: 60}, pAboveBlock = {x: 96, y: 70};
-            const pBlock = {x: 96, y: 96}, pAboveDrop = {x: 48, y: 70}, pDrop = {x: 48, y: 96};
-
-            if (cycle < 40) {
-                targetX = pIdle.x; targetY = pIdle.y;
-                instructionText = '> OBS: DETECTING SCENE...';
-            } else if (cycle < 90) {
-                let p = easeInOutCubic((cycle - 40) / 50);
-                targetX = pIdle.x + (pAboveBlock.x - pIdle.x) * p;
-                targetY = pIdle.y + (pAboveBlock.y - pIdle.y) * p;
-                instructionText = '> ACT: TARGET RED_BLOCK';
-            } else if (cycle < 120) {
-                let p = easeInOutCubic((cycle - 90) / 30);
-                targetX = pAboveBlock.x;
-                targetY = pAboveBlock.y + (pBlock.y - pAboveBlock.y) * p;
-                instructionText = '> ACT: ALIGNING END-EFFECTOR';
-            } else if (cycle < 140) {
-                targetX = pBlock.x; targetY = pBlock.y;
-                clawOpen = 1 - (cycle - 120) / 20;
-                instructionText = '> ACT: GRASP';
-            } else if (cycle < 180) {
-                holding = true; clawOpen = 0;
-                let p = easeInOutCubic((cycle - 140) / 40);
-                targetX = pBlock.x + (pAboveBlock.x - pBlock.x) * p;
-                targetY = pBlock.y + (pAboveBlock.y - pBlock.y) * p;
-                instructionText = '> ACT: LIFT OBJECT';
-            } else if (cycle < 250) {
-                holding = true; clawOpen = 0;
-                let p = easeInOutCubic((cycle - 180) / 70);
-                targetX = pAboveBlock.x + (pAboveDrop.x - pAboveBlock.x) * p;
-                targetY = pAboveBlock.y + (pAboveDrop.y - pAboveBlock.y) * p;
-                instructionText = '> VLA: NAVIGATE TO ZONE_A';
-            } else if (cycle < 280) {
-                holding = true; clawOpen = 0;
-                let p = easeInOutCubic((cycle - 250) / 30);
-                targetX = pAboveDrop.x;
-                targetY = pAboveDrop.y + (pDrop.y - pAboveDrop.y) * p;
-                instructionText = '> ACT: LOWER PAYLOAD';
-            } else if (cycle < 300) {
-                targetX = pDrop.x; targetY = pDrop.y;
-                holding = false; blockX = pDrop.x - 5;
-                clawOpen = (cycle - 280) / 20;
-                instructionText = '> ACT: RELEASE';
-            } else if (cycle < 340) {
-                targetX = pAboveDrop.x;
-                let p = easeInOutCubic((cycle - 300) / 40);
-                targetY = pDrop.y + (pAboveDrop.y - pDrop.y) * p;
-                blockX = pDrop.x - 5;
-                instructionText = '> SYS: TASK_SUCCESS';
-            } else if (cycle < 400) {
-                let p = easeInOutCubic((cycle - 340) / 60);
-                targetX = pAboveDrop.x + (pIdle.x - pAboveDrop.x) * p;
-                targetY = pAboveDrop.y + (pIdle.y - pAboveDrop.y) * p;
-                blockX = pDrop.x - 5;
-                if (cycle > 390) blockX = -999;
-                instructionText = '> SYS: RETURNING TO HOME';
-            } else {
-                targetX = pIdle.x; targetY = pIdle.y;
-                if (cycle > 450) blockX = pBlock.x - 5;
-                else blockX = -999;
-                instructionText = '> SYS: STANDBY';
+            function easeInOutCubic(t) {
+                return t < 0.5
+                    ? 4 * t * t * t
+                    : 1 - Math.pow(-2 * t + 2, 3) / 2;
             }
 
-            if (!holding && blockX > 0) {
-                ctx.fillStyle = 'rgba(0,0,0,0.6)';
-                ctx.fillRect(blockX, blockY + 8, 10, 2);
-                ctx.fillStyle = C_BLOCK;
-                ctx.fillRect(blockX, blockY - 2, 10, 10);
-                ctx.fillStyle = C_BLOCK_HL;
-                ctx.fillRect(blockX, blockY - 2, 10, 2);
-                ctx.fillRect(blockX, blockY, 2, 8);
-                ctx.fillStyle = C_BLOCK_SH;
-                ctx.fillRect(blockX + 8, blockY, 2, 8);
+            function drawSegment(x1, y1, x2, y2) {
+                ctx.strokeStyle = C_ARM_SH;
+                ctx.lineWidth = 6;
+                ctx.lineCap = "round";
+                ctx.beginPath();
+                ctx.moveTo(x1, y1 + 1);
+                ctx.lineTo(x2, y2 + 1);
+                ctx.stroke();
+                ctx.strokeStyle = C_ARM;
+                ctx.lineWidth = 5;
+                ctx.beginPath();
+                ctx.moveTo(x1, y1);
+                ctx.lineTo(x2, y2);
+                ctx.stroke();
+                ctx.strokeStyle = C_ARM_HL;
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(x1, y1 - 1);
+                ctx.lineTo(x2, y2 - 1);
+                ctx.stroke();
             }
 
-            let pose = solveIK(targetX, targetY);
-
-            ctx.fillStyle = 'rgba(0,0,0,0.8)';
-            ctx.fillRect(BASE_X - 16, BASE_Y + 2, 32, 4);
-            ctx.fillStyle = C_BASE_1;
-            ctx.beginPath();
-            ctx.moveTo(BASE_X - 14, BASE_Y + 4); ctx.lineTo(BASE_X + 14, BASE_Y + 4);
-            ctx.lineTo(BASE_X + 10, BASE_Y - 4); ctx.lineTo(BASE_X - 10, BASE_Y - 4);
-            ctx.fill();
-            ctx.fillStyle = C_BASE_2;
-            ctx.fillRect(BASE_X - 8, BASE_Y - 10, 16, 8);
-
-            ctx.fillStyle = (Math.floor(time / 15) % 2 === 0 || cycle > 300) ? '#00FF00' : '#005500';
-            ctx.fillRect(BASE_X - 5, BASE_Y - 8, 2, 2);
-
-            drawSegment(BASE_X, BASE_Y - 6, pose.j1x, pose.j1y);
-            drawSegment(pose.j1x, pose.j1y, pose.j2x, pose.j2y);
-            drawJoint(BASE_X, BASE_Y - 6, 8);
-            drawJoint(pose.j1x, pose.j1y, 6);
-
-            let cx = pose.j2x, cy = pose.j2y;
-            ctx.save();
-            ctx.translate(cx, cy);
-
-            ctx.fillStyle = C_BASE_1; ctx.fillRect(-3, -3, 6, 6);
-            ctx.fillStyle = C_JOINT; ctx.fillRect(-1, -1, 2, 2);
-            ctx.fillStyle = C_BASE_2; ctx.fillRect(-6, 2, 12, 4);
-
-            let openAmt = clawOpen * 4;
-            ctx.fillStyle = C_ARM; ctx.fillRect(-6 - openAmt, 6, 3, 6);
-            ctx.fillStyle = C_ARM_SH; ctx.fillRect(-4 - openAmt, 6, 1, 6);
-            ctx.fillStyle = C_ARM; ctx.fillRect(3 + openAmt, 6, 3, 6);
-            ctx.fillStyle = C_ARM_SH; ctx.fillRect(3 + openAmt, 6, 1, 6);
-
-            if (holding) {
-                ctx.fillStyle = C_BLOCK; ctx.fillRect(-5, 8, 10, 10);
-                ctx.fillStyle = C_BLOCK_HL; ctx.fillRect(-5, 8, 10, 2); ctx.fillRect(-5, 10, 2, 8);
-                ctx.fillStyle = C_BLOCK_SH; ctx.fillRect(3, 10, 2, 8);
+            function drawJoint(x, y, size) {
+                ctx.fillStyle = C_ARM_SH;
+                ctx.fillRect(
+                    Math.floor(x - size / 2) - 1,
+                    Math.floor(y - size / 2) - 1,
+                    size + 2,
+                    size + 2,
+                );
+                ctx.fillStyle = C_JOINT;
+                ctx.fillRect(
+                    Math.floor(x - size / 2),
+                    Math.floor(y - size / 2),
+                    size,
+                    size,
+                );
+                ctx.fillStyle = C_JOINT_DOT;
+                ctx.fillRect(Math.floor(x) - 1, Math.floor(y) - 1, 2, 2);
             }
-            ctx.restore();
 
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
-            ctx.fillRect(0, 0, 128, 14);
-            ctx.fillStyle = C_VLA_TEXT;
-            ctx.font = '8px "Courier New", monospace';
-            ctx.fillText(instructionText, 4, 10);
-        }
+            function solveIK(targetX, targetY) {
+                let dx = targetX - BASE_X,
+                    dy = targetY - BASE_Y;
+                let dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist > L1 + L2 - 0.1) {
+                    let ratio = (L1 + L2 - 0.1) / dist;
+                    dx *= ratio;
+                    dy *= ratio;
+                    dist = L1 + L2 - 0.1;
+                }
+                let cosT2 = (dist * dist - L1 * L1 - L2 * L2) / (2 * L1 * L2);
+                cosT2 = Math.max(-1, Math.min(1, cosT2));
+                let theta2 = Math.acos(cosT2);
+                let theta1 =
+                    Math.atan2(dy, dx) -
+                    Math.atan2(
+                        L2 * Math.sin(theta2),
+                        L1 + L2 * Math.cos(theta2),
+                    );
+                return {
+                    j1x: BASE_X + L1 * Math.cos(theta1),
+                    j1y: BASE_Y + L1 * Math.sin(theta1),
+                    j2x:
+                        BASE_X +
+                        L1 * Math.cos(theta1) +
+                        L2 * Math.cos(theta1 + theta2),
+                    j2y:
+                        BASE_Y +
+                        L1 * Math.sin(theta1) +
+                        L2 * Math.sin(theta1 + theta2),
+                };
+            }
 
-        function animate() { time++; drawFrame(time); requestAnimationFrame(animate); }
-        animate();
-    </script>
-</body>
+            function drawFrame(t) {
+                ctx.fillStyle = C_BG;
+                ctx.fillRect(0, 0, 128, 128);
+                ctx.strokeStyle = C_GRID;
+                ctx.lineWidth = 1;
+                for (let i = 0; i < 128; i += 16) {
+                    ctx.beginPath();
+                    ctx.moveTo(i, 0);
+                    ctx.lineTo(i, 128);
+                    ctx.stroke();
+                    ctx.beginPath();
+                    ctx.moveTo(0, i);
+                    ctx.lineTo(128, i);
+                    ctx.stroke();
+                }
+                ctx.fillStyle = C_FLOOR;
+                ctx.fillRect(0, 114, 128, 14);
+                ctx.strokeStyle = "#acb0be";
+                ctx.setLineDash([2, 2]);
+                ctx.strokeRect(45, 104, 14, 10);
+                ctx.setLineDash([]);
+
+                let cycle = t % 500;
+                let targetX,
+                    targetY,
+                    clawOpen = 1;
+                let blockX = 77,
+                    blockY = 106,
+                    holding = false;
+
+                const pIdle = { x: 54, y: 52 };
+                const pAboveBlock = { x: 82, y: 68 };
+                const pBlock = { x: 82, y: 96 };
+                const pAboveDrop = { x: 52, y: 68 };
+                const pDrop = { x: 52, y: 96 };
+
+                if (cycle < 40) {
+                    targetX = pIdle.x;
+                    targetY = pIdle.y;
+                    instructionText = "> OBS: DETECTING SCENE...";
+                } else if (cycle < 100) {
+                    let p = easeInOutCubic((cycle - 40) / 60);
+                    targetX = pIdle.x + (pAboveBlock.x - pIdle.x) * p;
+                    targetY = pIdle.y + (pAboveBlock.y - pIdle.y) * p;
+                    instructionText = "> ACT: TARGET RED_BLOCK";
+                } else if (cycle < 140) {
+                    let p = easeInOutCubic((cycle - 100) / 40);
+                    targetX = pAboveBlock.x;
+                    targetY = pAboveBlock.y + (pBlock.y - pAboveBlock.y) * p;
+                    instructionText = "> ACT: ALIGNING END-EFFECTOR";
+                } else if (cycle < 165) {
+                    targetX = pBlock.x;
+                    targetY = pBlock.y;
+                    clawOpen = 1 - (cycle - 140) / 25;
+                    instructionText = "> ACT: GRASP";
+                } else if (cycle < 210) {
+                    holding = true;
+                    clawOpen = 0;
+                    let p = easeInOutCubic((cycle - 165) / 45);
+                    targetX = pBlock.x + (pAboveBlock.x - pBlock.x) * p;
+                    targetY = pBlock.y + (pAboveBlock.y - pBlock.y) * p;
+                    instructionText = "> ACT: LIFT OBJECT";
+                } else if (cycle < 290) {
+                    holding = true;
+                    clawOpen = 0;
+                    let p = easeInOutCubic((cycle - 210) / 80);
+                    targetX =
+                        pAboveBlock.x + (pAboveDrop.x - pAboveBlock.x) * p;
+                    targetY =
+                        pAboveBlock.y + (pAboveDrop.y - pAboveBlock.y) * p;
+                    instructionText = "> VLA: NAVIGATE TO ZONE_A";
+                } else if (cycle < 330) {
+                    holding = true;
+                    clawOpen = 0;
+                    let p = easeInOutCubic((cycle - 290) / 40);
+                    targetX = pAboveDrop.x;
+                    targetY = pAboveDrop.y + (pDrop.y - pAboveDrop.y) * p;
+                    instructionText = "> ACT: LOWER PAYLOAD";
+                } else if (cycle < 355) {
+                    targetX = pDrop.x;
+                    targetY = pDrop.y;
+                    holding = false;
+                    blockX = pDrop.x - 5;
+                    clawOpen = (cycle - 330) / 25;
+                    instructionText = "> ACT: RELEASE";
+                } else if (cycle < 400) {
+                    let p = easeInOutCubic((cycle - 355) / 45);
+                    targetX = pAboveDrop.x;
+                    targetY = pDrop.y + (pAboveDrop.y - pDrop.y) * p;
+                    blockX = pDrop.x - 5;
+                    instructionText = "> SYS: TASK_SUCCESS";
+                } else if (cycle < 460) {
+                    let p = easeInOutCubic((cycle - 400) / 60);
+                    targetX = pAboveDrop.x + (pIdle.x - pAboveDrop.x) * p;
+                    targetY = pAboveDrop.y + (pIdle.y - pAboveDrop.y) * p;
+                    blockX = pDrop.x - 5;
+                    if (cycle > 450) blockX = -999;
+                    instructionText = "> SYS: RETURNING TO HOME";
+                } else {
+                    targetX = pIdle.x;
+                    targetY = pIdle.y;
+                    blockX = cycle > 480 ? 77 : -999;
+                    instructionText = "> SYS: STANDBY";
+                }
+
+                if (!holding && blockX > 0) {
+                    ctx.fillStyle = "rgba(76, 79, 105, 0.12)";
+                    ctx.fillRect(blockX, blockY + 8, 10, 2);
+                    ctx.fillStyle = C_BLOCK;
+                    ctx.fillRect(blockX, blockY - 2, 10, 10);
+                    ctx.fillStyle = C_BLOCK_HL;
+                    ctx.fillRect(blockX, blockY - 2, 10, 2);
+                    ctx.fillRect(blockX, blockY, 2, 8);
+                    ctx.fillStyle = C_BLOCK_SH;
+                    ctx.fillRect(blockX + 8, blockY, 2, 8);
+                }
+
+                let pose = solveIK(targetX, targetY);
+
+                ctx.fillStyle = "rgba(76, 79, 105, 0.1)";
+                ctx.fillRect(BASE_X - 16, BASE_Y + 2, 32, 4);
+                ctx.fillStyle = C_BASE_1;
+                ctx.beginPath();
+                ctx.moveTo(BASE_X - 14, BASE_Y + 4);
+                ctx.lineTo(BASE_X + 14, BASE_Y + 4);
+                ctx.lineTo(BASE_X + 10, BASE_Y - 4);
+                ctx.lineTo(BASE_X - 10, BASE_Y - 4);
+                ctx.fill();
+                ctx.fillStyle = C_BASE_2;
+                ctx.fillRect(BASE_X - 8, BASE_Y - 10, 16, 8);
+
+                ctx.fillStyle =
+                    Math.floor(time / 15) % 2 === 0 || cycle > 355
+                        ? "#40a02b"
+                        : "#ccd0da";
+                ctx.fillRect(BASE_X - 5, BASE_Y - 8, 2, 2);
+
+                drawSegment(BASE_X, BASE_Y - 6, pose.j1x, pose.j1y);
+                drawSegment(pose.j1x, pose.j1y, pose.j2x, pose.j2y);
+                drawJoint(BASE_X, BASE_Y - 6, 8);
+                drawJoint(pose.j1x, pose.j1y, 6);
+
+                let cx = pose.j2x,
+                    cy = pose.j2y;
+                ctx.save();
+                ctx.translate(cx, cy);
+
+                ctx.fillStyle = C_BASE_1;
+                ctx.fillRect(-3, -3, 6, 6);
+                ctx.fillStyle = C_JOINT;
+                ctx.fillRect(-1, -1, 2, 2);
+                ctx.fillStyle = C_BASE_2;
+                ctx.fillRect(-6, 2, 12, 4);
+
+                let openAmt = clawOpen * 4;
+                ctx.fillStyle = C_ARM;
+                ctx.fillRect(-6 - openAmt, 6, 3, 6);
+                ctx.fillStyle = C_ARM_SH;
+                ctx.fillRect(-4 - openAmt, 6, 1, 6);
+                ctx.fillStyle = C_ARM;
+                ctx.fillRect(3 + openAmt, 6, 3, 6);
+                ctx.fillStyle = C_ARM_SH;
+                ctx.fillRect(3 + openAmt, 6, 1, 6);
+
+                if (holding) {
+                    ctx.fillStyle = C_BLOCK;
+                    ctx.fillRect(-5, 8, 10, 10);
+                    ctx.fillStyle = C_BLOCK_HL;
+                    ctx.fillRect(-5, 8, 10, 2);
+                    ctx.fillRect(-5, 10, 2, 8);
+                    ctx.fillStyle = C_BLOCK_SH;
+                    ctx.fillRect(3, 10, 2, 8);
+                }
+                ctx.restore();
+
+                ctx.fillStyle = "rgba(239, 241, 245, 0.8)";
+                ctx.fillRect(0, 0, 128, 14);
+                ctx.fillStyle = C_VLA_TEXT;
+                ctx.font = '8px "Courier New", monospace';
+                ctx.fillText(instructionText, 4, 10);
+            }
+
+            function animate() {
+                time++;
+                drawFrame(time);
+                requestAnimationFrame(animate);
+            }
+            animate();
+        </script>
+    </body>
 </html>

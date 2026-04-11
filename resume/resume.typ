@@ -21,9 +21,9 @@
 
 #custom-title("Skills")[
   #skills()[
-    - *Robotics & Control:* ROS2, RTOS, Behavior Trees, IK Control, MPC
+    - *Robotics & Control:* ROS2, dora-rs, RTOS, Behavior Trees, IK Control, MPC
     - *AI & ML:* VLAs, Vision models, Reinforcement Learning, Imitation Learning, PyTorch, JAX.
-    - *Languages:* Python 3.10-3.13, Rust, C, C++17, MATLAB, Lua, Bash
+    - *Languages:* Python 3.13, Rust, C, C++17, MATLAB, Lua, Bash
     - *Simulation & Tools:* MuJoCo, Isaac Sim, Genesis, Gazebo, Docker, CMake, Git, CI/CD
   ]
 ]
@@ -71,8 +71,8 @@
 ]
 
 #custom-title("Hackathons - Projects")[
-  #project-heading("Portfolio")[
-    - Built my own SO-ARM, some OSS tools for LLMs, a neural MPC approximation, Reachy Mini projects and many more on my portfolio, see:
+  #project-heading("Projects")[
+    - SO-ARM experiments, some OSS tools, neural MPC approximation, reachy mini, all under:
     - https://www.theguega.github.io/me
   ]
 

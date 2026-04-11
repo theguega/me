@@ -1,427 +1,560 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>blog - theguega/me</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --rosewater: #dc8a78; --flamingo: #dd7878; --pink: #ea76cb;
-            --mauve: #8839ef; --red: #d20f39; --maroon: #e64553;
-            --peach: #fe640b; --yellow: #df8e1d; --green: #40a02b;
-            --teal: #179299; --sky: #04a5e5; --sapphire: #209fb5;
-            --blue: #1e66f5; --lavender: #7287fd;
-            --text: #4c4f69; --subtext1: #5c5f77; --subtext0: #6c6f85;
-            --overlay2: #7c7f93; --overlay1: #8c8fa1; --overlay0: #9ca0b0;
-            --surface2: #acb0be; --surface1: #bcc0cc; --surface0: #ccd0da;
-            --base: #eff1f5; --mantle: #e6e9ef; --crust: #dce0e8;
-        }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body {
-            background: var(--base);
-            color: var(--text);
-            font-family: 'JetBrains Mono', monospace;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-        nav {
-            height: 36px;
-            background: var(--crust);
-            border-bottom: 1px solid var(--surface0);
-            display: flex;
-            align-items: stretch;
-            padding: 0 16px;
-            font-size: 13px;
-            flex-shrink: 0;
-        }
-        nav a {
-            display: flex;
-            align-items: center;
-            padding: 0 16px;
-            color: var(--subtext0);
-            text-decoration: none;
-            transition: color 0.15s, background 0.15s;
-        }
-        nav a:hover { color: var(--text); background: var(--surface0); }
-        nav a.active {
-            color: var(--text);
-            background: var(--base);
-            border-bottom: 1px solid var(--base);
-            margin-bottom: -1px;
-        }
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>blog</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            :root {
+                --rosewater: #dc8a78;
+                --flamingo: #dd7878;
+                --pink: #ea76cb;
+                --mauve: #8839ef;
+                --red: #d20f39;
+                --maroon: #e64553;
+                --peach: #fe640b;
+                --yellow: #df8e1d;
+                --green: #40a02b;
+                --teal: #179299;
+                --sky: #04a5e5;
+                --sapphire: #209fb5;
+                --blue: #1e66f5;
+                --lavender: #7287fd;
+                --text: #4c4f69;
+                --subtext1: #5c5f77;
+                --subtext0: #6c6f85;
+                --overlay2: #7c7f93;
+                --overlay1: #8c8fa1;
+                --overlay0: #9ca0b0;
+                --surface2: #acb0be;
+                --surface1: #bcc0cc;
+                --surface0: #ccd0da;
+                --base: #eff1f5;
+                --mantle: #e6e9ef;
+                --crust: #dce0e8;
+            }
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+            html {
+                scrollbar-width: none;
+                cursor:
+                    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='22' fill='none' stroke='%234c4f69' stroke-width='2' stroke-linecap='round'><line x1='8' y1='1' x2='8' y2='8'/><line x1='3' y1='8' x2='13' y2='8'/><line x1='3' y1='8' x2='3' y2='16'/><line x1='13' y1='8' x2='13' y2='16'/></svg>")
+                        8 14,
+                    auto;
+            }
+            html::-webkit-scrollbar {
+                display: none;
+            }
+            a,
+            button,
+            summary,
+            .post-header {
+                cursor:
+                    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='22' fill='none' stroke='%234c4f69' stroke-width='2' stroke-linecap='round'><line x1='8' y1='1' x2='8' y2='8'/><line x1='5' y1='8' x2='11' y2='8'/><line x1='5' y1='8' x2='5' y2='16'/><line x1='11' y1='8' x2='11' y2='16'/></svg>")
+                        8 14,
+                    pointer;
+            }
+            body {
+                background: var(--base);
+                color: var(--text);
+                font-family: "JetBrains Mono", monospace;
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+            }
+            nav {
+                height: 36px;
+                background: var(--crust);
+                border-bottom: 1px solid var(--surface0);
+                display: flex;
+                align-items: stretch;
+                padding: 0 16px;
+                font-size: 13px;
+                flex-shrink: 0;
+            }
+            nav a {
+                display: flex;
+                align-items: center;
+                padding: 0 16px;
+                color: var(--subtext0);
+                text-decoration: none;
+                transition:
+                    color 0.15s,
+                    background 0.15s;
+            }
+            nav a:hover {
+                color: var(--text);
+                background: var(--surface0);
+            }
+            nav a.active {
+                color: var(--text);
+                background: var(--base);
+                border-bottom: 1px solid var(--base);
+                margin-bottom: -1px;
+            }
 
-        .repo-container {
-            flex: 1;
-            max-width: 900px;
-            width: 100%;
-            margin: 0 auto;
-            padding: 16px 16px 32px;
-        }
+            .repo-container {
+                flex: 1;
+                max-width: 900px;
+                width: 100%;
+                margin: 0 auto;
+                padding: 16px 16px 32px;
+            }
 
-        .repo-header {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            padding: 12px 0;
-            font-size: 14px;
-        }
-        .repo-header svg {
-            width: 16px;
-            height: 16px;
-            fill: var(--overlay1);
-            flex-shrink: 0;
-        }
-        .repo-header .owner {
-            color: var(--blue);
-        }
-        .repo-header .sep {
-            color: var(--overlay1);
-        }
-        .repo-header .name {
-            color: var(--blue);
-            font-weight: 600;
-        }
+            .repo-header {
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                padding: 12px 0;
+                font-size: 14px;
+            }
+            .repo-header svg {
+                width: 16px;
+                height: 16px;
+                fill: var(--overlay1);
+                flex-shrink: 0;
+            }
+            .repo-header .owner {
+                color: var(--blue);
+            }
+            .repo-header .sep {
+                color: var(--overlay1);
+            }
+            .repo-header .name {
+                color: var(--blue);
+                font-weight: 600;
+            }
 
-        .repo-tabs {
-            display: flex;
-            align-items: stretch;
-            border-bottom: 1px solid var(--surface0);
-            font-size: 13px;
-            gap: 0;
-            margin-bottom: 16px;
-        }
-        .repo-tab {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            padding: 8px 14px;
-            color: var(--subtext0);
-            cursor: default;
-            border-bottom: 2px solid transparent;
-            transition: color 0.15s;
-        }
-        .repo-tab:hover { color: var(--text); }
-        .repo-tab.active {
-            color: var(--text);
-            font-weight: 500;
-            border-bottom-color: var(--peach);
-        }
-        .repo-tab svg {
-            width: 14px;
-            height: 14px;
-            fill: currentColor;
-        }
-        .repo-tab .count {
-            font-size: 11px;
-            background: var(--surface0);
-            color: var(--subtext0);
-            padding: 0 6px;
-            border-radius: 10px;
-        }
+            .repo-tabs {
+                display: flex;
+                align-items: stretch;
+                border-bottom: 1px solid var(--surface0);
+                font-size: 13px;
+                gap: 0;
+                margin-bottom: 16px;
+            }
+            .repo-tab {
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                padding: 8px 14px;
+                color: var(--subtext0);
+                cursor: inherit;
+                border-bottom: 2px solid transparent;
+                transition: color 0.15s;
+            }
+            .repo-tab:hover {
+                color: var(--text);
+            }
+            .repo-tab.active {
+                color: var(--text);
+                font-weight: 500;
+                border-bottom-color: var(--peach);
+            }
+            .repo-tab svg {
+                width: 14px;
+                height: 14px;
+                fill: currentColor;
+            }
+            .repo-tab .count {
+                font-size: 11px;
+                background: var(--surface0);
+                color: var(--subtext0);
+                padding: 0 6px;
+                border-radius: 10px;
+            }
 
-        .post {
-            border: 1px solid var(--surface0);
-            border-radius: 6px;
-            margin-bottom: 12px;
-            overflow: hidden;
-        }
-        .post-header {
-            display: flex;
-            align-items: center;
-            background: var(--mantle);
-            padding: 8px 12px;
-            font-size: 13px;
-            cursor: pointer;
-            user-select: none;
-            gap: 8px;
-            border-bottom: 1px solid var(--surface0);
-        }
-        .post.collapsed .post-header {
-            border-bottom: none;
-        }
-        .post-header:hover {
-            background: var(--crust);
-        }
-        .post-header svg {
-            width: 14px;
-            height: 14px;
-            fill: var(--overlay1);
-            flex-shrink: 0;
-        }
-        .post-header .chevron {
-            transition: transform 0.15s;
-        }
-        .post.collapsed .post-header .chevron {
-            transform: rotate(-90deg);
-        }
-        .post-header .filename {
-            color: var(--text);
-            font-weight: 500;
-        }
-        .post-header .spacer { flex: 1; }
-        .view-toggle {
-            display: flex;
-            border: 1px solid var(--surface0);
-            border-radius: 4px;
-            overflow: hidden;
-            font-size: 11px;
-        }
-        .view-toggle button {
-            background: var(--base);
-            border: none;
-            color: var(--subtext0);
-            padding: 2px 8px;
-            font-family: inherit;
-            font-size: 11px;
-            cursor: pointer;
-            transition: background 0.1s, color 0.1s;
-        }
-        .view-toggle button + button {
-            border-left: 1px solid var(--surface0);
-        }
-        .view-toggle button.active {
-            background: var(--blue);
-            color: #fff;
-        }
-        .view-toggle button:hover:not(.active) {
-            background: var(--surface0);
-        }
+            .post {
+                border: 1px solid var(--surface0);
+                border-radius: 6px;
+                margin-bottom: 12px;
+                overflow: hidden;
+            }
+            .post-header {
+                display: flex;
+                align-items: center;
+                background: var(--mantle);
+                padding: 8px 12px;
+                font-size: 13px;
+                user-select: none;
+                gap: 8px;
+                border-bottom: 1px solid var(--surface0);
+            }
+            .post.collapsed .post-header {
+                border-bottom: none;
+            }
+            .post-header:hover {
+                background: var(--crust);
+            }
+            .post-header svg {
+                width: 14px;
+                height: 14px;
+                fill: var(--overlay1);
+                flex-shrink: 0;
+            }
+            .post-header .chevron {
+                transition: transform 0.15s;
+            }
+            .post.collapsed .post-header .chevron {
+                transform: rotate(-90deg);
+            }
+            .post-header .filename {
+                color: var(--text);
+                font-weight: 500;
+            }
+            .post-header .spacer {
+                flex: 1;
+            }
+            .view-toggle {
+                display: flex;
+                border: 1px solid var(--surface0);
+                border-radius: 4px;
+                overflow: hidden;
+                font-size: 11px;
+            }
+            .view-toggle button {
+                background: var(--base);
+                border: none;
+                color: var(--subtext0);
+                padding: 2px 8px;
+                font-family: inherit;
+                font-size: 11px;
+                transition:
+                    background 0.1s,
+                    color 0.1s;
+            }
+            .view-toggle button + button {
+                border-left: 1px solid var(--surface0);
+            }
+            .view-toggle button.active {
+                background: var(--blue);
+                color: #fff;
+            }
+            .view-toggle button:hover:not(.active) {
+                background: var(--surface0);
+            }
 
-        .post-body {
-            background: var(--mantle);
-        }
-        .post.collapsed .post-body {
-            display: none;
-        }
+            .post-body {
+                background: var(--mantle);
+            }
+            .post.collapsed .post-body {
+                display: none;
+            }
 
-        .post-preview {
-            padding: 20px 24px;
-            line-height: 1.65;
-            font-size: 13px;
-        }
-        .post-preview h1 {
-            font-size: 1.6em;
-            font-weight: 600;
-            padding-bottom: 6px;
-            border-bottom: 1px solid var(--surface0);
-            margin-bottom: 12px;
-        }
-        .post-preview h2 {
-            font-size: 1.25em;
-            font-weight: 600;
-            padding-bottom: 4px;
-            border-bottom: 1px solid var(--surface0);
-            margin-top: 20px;
-            margin-bottom: 10px;
-        }
-        .post-preview h3 {
-            font-size: 1.1em;
-            font-weight: 600;
-            margin-top: 16px;
-            margin-bottom: 8px;
-        }
-        .post-preview p {
-            margin-bottom: 10px;
-        }
-        .post-preview ul, .post-preview ol {
-            margin-bottom: 10px;
-            padding-left: 24px;
-        }
-        .post-preview li {
-            margin-bottom: 4px;
-        }
-        .post-preview ol {
-            list-style: decimal;
-        }
-        .post-preview strong { font-weight: 600; }
-        .post-preview em { font-style: italic; }
-        .post-preview code {
-            background: var(--crust);
-            padding: 2px 5px;
-            border-radius: 3px;
-            font-size: 0.9em;
-        }
-        .post-preview pre {
-            background: var(--crust);
-            border: 1px solid var(--surface0);
-            border-radius: 6px;
-            padding: 12px 16px;
-            margin-bottom: 12px;
-            overflow-x: auto;
-            font-size: 12px;
-            line-height: 1.5;
-        }
-        .post-preview pre code {
-            background: none;
-            padding: 0;
-            border-radius: 0;
-            font-size: inherit;
-        }
+            .post-preview {
+                padding: 20px 24px;
+                line-height: 1.65;
+                font-size: 13px;
+            }
+            .post-preview h1 {
+                font-size: 1.6em;
+                font-weight: 600;
+                padding-bottom: 6px;
+                border-bottom: 1px solid var(--surface0);
+                margin-bottom: 12px;
+            }
+            .post-preview h2 {
+                font-size: 1.25em;
+                font-weight: 600;
+                padding-bottom: 4px;
+                border-bottom: 1px solid var(--surface0);
+                margin-top: 20px;
+                margin-bottom: 10px;
+            }
+            .post-preview h3 {
+                font-size: 1.1em;
+                font-weight: 600;
+                margin-top: 16px;
+                margin-bottom: 8px;
+            }
+            .post-preview p {
+                margin-bottom: 10px;
+            }
+            .post-preview ul,
+            .post-preview ol {
+                margin-bottom: 10px;
+                padding-left: 24px;
+            }
+            .post-preview li {
+                margin-bottom: 4px;
+            }
+            .post-preview ol {
+                list-style: decimal;
+            }
+            .post-preview strong {
+                font-weight: 600;
+            }
+            .post-preview em {
+                font-style: italic;
+            }
+            .post-preview code {
+                background: var(--crust);
+                padding: 2px 5px;
+                border-radius: 3px;
+                font-size: 0.9em;
+            }
+            .post-preview pre {
+                background: var(--crust);
+                border: 1px solid var(--surface0);
+                border-radius: 6px;
+                padding: 12px 16px;
+                margin-bottom: 12px;
+                overflow-x: auto;
+                font-size: 12px;
+                line-height: 1.5;
+            }
+            .post-preview pre code {
+                background: none;
+                padding: 0;
+                border-radius: 0;
+                font-size: inherit;
+            }
 
-        .post-code {
-            display: none;
-            background: var(--crust);
-            padding: 16px 20px;
-            font-size: 12px;
-            line-height: 1.55;
-            white-space: pre-wrap;
-            word-break: break-word;
-            overflow-x: auto;
-            color: var(--subtext1);
-        }
+            .post-code {
+                display: none;
+                background: var(--crust);
+                padding: 16px 20px;
+                font-size: 12px;
+                line-height: 1.55;
+                white-space: pre-wrap;
+                word-break: break-word;
+                overflow-x: auto;
+                color: var(--subtext1);
+            }
 
-        .post-error {
-            padding: 20px 24px;
-            color: var(--red);
-            font-size: 13px;
-        }
+            .post-error {
+                padding: 20px 24px;
+                color: var(--red);
+                font-size: 13px;
+            }
 
-        @media (max-width: 640px) {
-            .repo-container { padding: 12px 8px 24px; }
-            .post-preview { padding: 14px 12px; }
-            .post-code { padding: 12px 10px; }
-        }
-    </style>
-</head>
-<body>
-    <nav>
-        <a href="index.html">~</a>
-        <a href="blog.html" class="active">blog</a>
-        <a href="background.html">background</a>
-        <a href="projects.html">projects</a>
-    </nav>
-
-    <div class="repo-container">
-        <div class="repo-header">
-            <svg viewBox="0 0 16 16"><path d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 010-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5zm10.5-1h-8a1 1 0 00-1 1v6.708A2.486 2.486 0 014.5 9h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"/></svg>
-            <span class="owner">theguega</span>
-            <span class="sep">/</span>
-            <span class="name">me</span>
-        </div>
-
-        <div class="repo-tabs">
-            <div class="repo-tab active">
-                <svg viewBox="0 0 16 16"><path d="M4.72 3.22a.75.75 0 011.06 1.06L2.06 8l3.72 3.72a.75.75 0 11-1.06 1.06L.47 8.53a.75.75 0 010-1.06zm6.56 0a.75.75 0 10-1.06 1.06L13.94 8l-3.72 3.72a.75.75 0 101.06 1.06l4.25-4.25a.75.75 0 000-1.06z"/></svg>
-                Code
-            </div>
-            <div class="repo-tab">
-                <svg viewBox="0 0 16 16"><path d="M8 9.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"/><path d="M8 0a8 8 0 100 16A8 8 0 008 0zM1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0z"/></svg>
-                Issues
-            </div>
-            <div class="repo-tab">
-                <svg viewBox="0 0 16 16"><path d="M1.5 3.25a2.25 2.25 0 113 2.122v5.256a2.251 2.251 0 11-1.5 0V5.372A2.25 2.25 0 011.5 3.25zm5.677-.177L9.573.677A.25.25 0 0110 .854V2.5h1A2.5 2.5 0 0113.5 5v5.628a2.251 2.251 0 11-1.5 0V5a1 1 0 00-1-1h-1v1.646a.25.25 0 01-.427.177L7.177 3.427a.25.25 0 010-.354z"/></svg>
-                Pull requests
-            </div>
-        </div>
-
-        <div id="posts"></div>
-    </div>
-
-    <script>
-        const POSTS = [
-            { file: 'blog/vla-primer.md', expanded: true },
-            { file: 'blog/hello-world.md', expanded: false },
-        ];
-
-        function parseMarkdown(src) {
-            const lines = src.split('\n');
-            let html = '';
-            let inCodeBlock = false;
-            let inList = false;
-            let listType = '';
-            let codeContent = '';
-
-            function closeList() {
-                if (inList) {
-                    html += listType === 'ol' ? '</ol>' : '</ul>';
-                    inList = false;
+            .typing-text::after {
+                content: "▌";
+                animation: blink 0.7s step-end infinite;
+                color: var(--overlay1);
+            }
+            @keyframes blink {
+                50% {
+                    opacity: 0;
                 }
             }
 
-            function inlineFormat(text) {
-                text = text.replace(/`([^`]+)`/g, '<code>$1</code>');
-                text = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
-                text = text.replace(/(?<!\*)\*(?!\*)(.+?)(?<!\*)\*(?!\*)/g, '<em>$1</em>');
-                return text;
+            @media (max-width: 640px) {
+                .repo-container {
+                    padding: 12px 8px 24px;
+                }
+                .post-preview {
+                    padding: 14px 12px;
+                }
+                .post-code {
+                    padding: 12px 10px;
+                }
             }
+        </style>
+    </head>
+    <body>
+        <nav>
+            <a href="index.html">~</a>
+            <a href="blog.html" class="active">blog</a>
+            <a href="background.html">background</a>
+            <a href="projects.html">projects</a>
+        </nav>
 
-            for (let i = 0; i < lines.length; i++) {
-                const line = lines[i];
+        <div class="repo-container">
+            <div class="repo-header">
+                <svg viewBox="0 0 16 16">
+                    <path
+                        d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 010-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5zm10.5-1h-8a1 1 0 00-1 1v6.708A2.486 2.486 0 014.5 9h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"
+                    />
+                </svg>
+                <span class="owner">theguega</span>
+                <span class="sep">/</span>
+                <span class="name">me</span>
+            </div>
 
-                if (line.startsWith('```')) {
+            <div class="repo-tabs">
+                <div class="repo-tab active">
+                    <svg viewBox="0 0 16 16">
+                        <path
+                            d="M4.72 3.22a.75.75 0 011.06 1.06L2.06 8l3.72 3.72a.75.75 0 11-1.06 1.06L.47 8.53a.75.75 0 010-1.06zm6.56 0a.75.75 0 10-1.06 1.06L13.94 8l-3.72 3.72a.75.75 0 101.06 1.06l4.25-4.25a.75.75 0 000-1.06z"
+                        />
+                    </svg>
+                    Code
+                </div>
+                <div class="repo-tab">
+                    <svg viewBox="0 0 16 16">
+                        <path d="M8 9.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
+                        <path
+                            d="M8 0a8 8 0 100 16A8 8 0 008 0zM1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0z"
+                        />
+                    </svg>
+                    Issues
+                </div>
+                <div class="repo-tab">
+                    <svg viewBox="0 0 16 16">
+                        <path
+                            d="M1.5 3.25a2.25 2.25 0 113 2.122v5.256a2.251 2.251 0 11-1.5 0V5.372A2.25 2.25 0 011.5 3.25zm5.677-.177L9.573.677A.25.25 0 0110 .854V2.5h1A2.5 2.5 0 0113.5 5v5.628a2.251 2.251 0 11-1.5 0V5a1 1 0 00-1-1h-1v1.646a.25.25 0 01-.427.177L7.177 3.427a.25.25 0 010-.354z"
+                        />
+                    </svg>
+                    Pull requests
+                </div>
+            </div>
+
+            <div id="posts">
+                <div class="post collapsed">
+                    <div class="post-header" style="cursor: default">
+                        <svg
+                            class="chevron"
+                            viewBox="0 0 16 16"
+                            style="visibility: hidden"
+                        >
+                            <path
+                                d="M12.78 5.22a.75.75 0 010 1.06l-4.25 4.25a.75.75 0 01-1.06 0L3.22 6.28a.75.75 0 011.06-1.06L8 8.94l3.72-3.72a.75.75 0 011.06 0z"
+                            />
+                        </svg>
+                        <svg viewBox="0 0 16 16">
+                            <path
+                                d="M3.75 1.5a.25.25 0 00-.25.25v11.5c0 .138.112.25.25.25h8.5a.25.25 0 00.25-.25V6H9.75A1.75 1.75 0 018 4.25V1.5zm5.75.56v2.19c0 .138.112.25.25.25h2.19zM2 1.75C2 .784 2.784 0 3.75 0h5.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v8.586A1.75 1.75 0 0112.25 15h-8.5A1.75 1.75 0 012 13.25z"
+                            />
+                        </svg>
+                        <span class="filename"
+                            ><span class="typing-text"
+                                >next post coming soon...</span
+                            ></span
+                        >
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function parseMarkdown(src) {
+                const lines = src.split("\n");
+                let html = "";
+                let inCodeBlock = false;
+                let inList = false;
+                let listType = "";
+                let codeContent = "";
+
+                function closeList() {
+                    if (inList) {
+                        html += listType === "ol" ? "</ol>" : "</ul>";
+                        inList = false;
+                    }
+                }
+
+                function inlineFormat(text) {
+                    text = text.replace(/`([^`]+)`/g, "<code>$1</code>");
+                    text = text.replace(
+                        /\*\*(.+?)\*\*/g,
+                        "<strong>$1</strong>",
+                    );
+                    text = text.replace(
+                        /(?<!\*)\*(?!\*)(.+?)(?<!\*)\*(?!\*)/g,
+                        "<em>$1</em>",
+                    );
+                    return text;
+                }
+
+                for (let i = 0; i < lines.length; i++) {
+                    const line = lines[i];
+
+                    if (line.startsWith("```")) {
+                        if (inCodeBlock) {
+                            html +=
+                                "<pre><code>" +
+                                codeContent
+                                    .replace(/</g, "&lt;")
+                                    .replace(/>/g, "&gt;") +
+                                "</code></pre>";
+                            codeContent = "";
+                            inCodeBlock = false;
+                        } else {
+                            closeList();
+                            inCodeBlock = true;
+                        }
+                        continue;
+                    }
+
                     if (inCodeBlock) {
-                        html += '<pre><code>' + codeContent.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</code></pre>';
-                        codeContent = '';
-                        inCodeBlock = false;
-                    } else {
-                        closeList();
-                        inCodeBlock = true;
+                        codeContent += (codeContent ? "\n" : "") + line;
+                        continue;
                     }
-                    continue;
-                }
 
-                if (inCodeBlock) {
-                    codeContent += (codeContent ? '\n' : '') + line;
-                    continue;
-                }
-
-                const h3 = line.match(/^### (.+)/);
-                if (h3) { closeList(); html += '<h3>' + inlineFormat(h3[1]) + '</h3>'; continue; }
-
-                const h2 = line.match(/^## (.+)/);
-                if (h2) { closeList(); html += '<h2>' + inlineFormat(h2[1]) + '</h2>'; continue; }
-
-                const h1 = line.match(/^# (.+)/);
-                if (h1) { closeList(); html += '<h1>' + inlineFormat(h1[1]) + '</h1>'; continue; }
-
-                const bullet = line.match(/^[-*] (.+)/);
-                if (bullet) {
-                    if (!inList || listType !== 'ul') {
+                    const h3 = line.match(/^### (.+)/);
+                    if (h3) {
                         closeList();
-                        html += '<ul>';
-                        inList = true;
-                        listType = 'ul';
+                        html += "<h3>" + inlineFormat(h3[1]) + "</h3>";
+                        continue;
                     }
-                    html += '<li>' + inlineFormat(bullet[1]) + '</li>';
-                    continue;
-                }
 
-                const ordered = line.match(/^\d+\. (.+)/);
-                if (ordered) {
-                    if (!inList || listType !== 'ol') {
+                    const h2 = line.match(/^## (.+)/);
+                    if (h2) {
                         closeList();
-                        html += '<ol>';
-                        inList = true;
-                        listType = 'ol';
+                        html += "<h2>" + inlineFormat(h2[1]) + "</h2>";
+                        continue;
                     }
-                    html += '<li>' + inlineFormat(ordered[1]) + '</li>';
-                    continue;
-                }
 
-                if (line.trim() === '') {
+                    const h1 = line.match(/^# (.+)/);
+                    if (h1) {
+                        closeList();
+                        html += "<h1>" + inlineFormat(h1[1]) + "</h1>";
+                        continue;
+                    }
+
+                    const bullet = line.match(/^[-*] (.+)/);
+                    if (bullet) {
+                        if (!inList || listType !== "ul") {
+                            closeList();
+                            html += "<ul>";
+                            inList = true;
+                            listType = "ul";
+                        }
+                        html += "<li>" + inlineFormat(bullet[1]) + "</li>";
+                        continue;
+                    }
+
+                    const ordered = line.match(/^\d+\. (.+)/);
+                    if (ordered) {
+                        if (!inList || listType !== "ol") {
+                            closeList();
+                            html += "<ol>";
+                            inList = true;
+                            listType = "ol";
+                        }
+                        html += "<li>" + inlineFormat(ordered[1]) + "</li>";
+                        continue;
+                    }
+
+                    if (line.trim() === "") {
+                        closeList();
+                        continue;
+                    }
+
                     closeList();
-                    continue;
+                    html += "<p>" + inlineFormat(line) + "</p>";
                 }
 
                 closeList();
-                html += '<p>' + inlineFormat(line) + '</p>';
+                return html;
             }
 
-            closeList();
-            return html;
-        }
+            function createPost(filename, expanded) {
+                const post = document.createElement("div");
+                post.className = "post" + (expanded ? "" : " collapsed");
 
-        function createPost(filename, expanded) {
-            const post = document.createElement('div');
-            post.className = 'post' + (expanded ? '' : ' collapsed');
+                const shortName = filename.split("/").pop();
 
-            const shortName = filename.split('/').pop();
-
-            post.innerHTML = `
+                post.innerHTML = `
                 <div class="post-header">
                     <svg class="chevron" viewBox="0 0 16 16"><path d="M12.78 5.22a.75.75 0 010 1.06l-4.25 4.25a.75.75 0 01-1.06 0L3.22 6.28a.75.75 0 011.06-1.06L8 8.94l3.72-3.72a.75.75 0 011.06 0z"/></svg>
                     <svg viewBox="0 0 16 16"><path d="M3.75 1.5a.25.25 0 00-.25.25v11.5c0 .138.112.25.25.25h8.5a.25.25 0 00.25-.25V6H9.75A1.75 1.75 0 018 4.25V1.5zm5.75.56v2.19c0 .138.112.25.25.25h2.19zM2 1.75C2 .784 2.784 0 3.75 0h5.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v8.586A1.75 1.75 0 0112.25 15h-8.5A1.75 1.75 0 012 13.25z"/></svg>
@@ -438,48 +571,71 @@
                 </div>
             `;
 
-            const header = post.querySelector('.post-header');
-            header.addEventListener('click', () => {
-                post.classList.toggle('collapsed');
-            });
-
-            const buttons = post.querySelectorAll('.view-toggle button');
-            const previewEl = post.querySelector('.post-preview');
-            const codeEl = post.querySelector('.post-code');
-
-            buttons.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    buttons.forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-                    if (btn.dataset.view === 'preview') {
-                        previewEl.style.display = '';
-                        codeEl.style.display = 'none';
-                    } else {
-                        previewEl.style.display = 'none';
-                        codeEl.style.display = 'block';
-                    }
-                });
-            });
-
-            fetch(filename)
-                .then(r => {
-                    if (!r.ok) throw new Error(r.status);
-                    return r.text();
-                })
-                .then(md => {
-                    previewEl.innerHTML = parseMarkdown(md);
-                    codeEl.textContent = md;
-                })
-                .catch(() => {
-                    previewEl.innerHTML = '<div class="post-error">Failed to load ' + shortName + '</div>';
-                    codeEl.textContent = 'Failed to load ' + shortName;
+                const header = post.querySelector(".post-header");
+                header.addEventListener("click", () => {
+                    post.classList.toggle("collapsed");
                 });
 
-            return post;
-        }
+                const buttons = post.querySelectorAll(".view-toggle button");
+                const previewEl = post.querySelector(".post-preview");
+                const codeEl = post.querySelector(".post-code");
 
-        const container = document.getElementById('posts');
-        POSTS.forEach(p => container.appendChild(createPost(p.file, p.expanded)));
-    </script>
-</body>
+                buttons.forEach((btn) => {
+                    btn.addEventListener("click", () => {
+                        buttons.forEach((b) => b.classList.remove("active"));
+                        btn.classList.add("active");
+                        if (btn.dataset.view === "preview") {
+                            previewEl.style.display = "";
+                            codeEl.style.display = "none";
+                        } else {
+                            previewEl.style.display = "none";
+                            codeEl.style.display = "block";
+                        }
+                    });
+                });
+
+                fetch(filename)
+                    .then((r) => {
+                        if (!r.ok) throw new Error(r.status);
+                        return r.text();
+                    })
+                    .then((md) => {
+                        previewEl.innerHTML = parseMarkdown(md);
+                        codeEl.textContent = md;
+                    })
+                    .catch(() => {
+                        previewEl.innerHTML =
+                            '<div class="post-error">Failed to load ' +
+                            shortName +
+                            "</div>";
+                        codeEl.textContent = "Failed to load " + shortName;
+                    });
+
+                return post;
+            }
+
+            const container = document.getElementById("posts");
+
+            async function loadPosts() {
+                try {
+                    const res = await fetch(
+                        "https://api.github.com/repos/theguega/me/contents/blog",
+                    );
+                    if (!res.ok) throw new Error(res.status);
+                    const files = await res.json();
+                    const posts = files
+                        .filter((f) => f.name.endsWith(".md"))
+                        .sort((a, b) => b.name.localeCompare(a.name));
+                    if (posts.length === 0) return;
+                    posts.forEach((f, i) =>
+                        container.appendChild(
+                            createPost("blog/" + f.name, i === 0),
+                        ),
+                    );
+                } catch {}
+            }
+
+            loadPosts();
+        </script>
+    </body>
 </html>

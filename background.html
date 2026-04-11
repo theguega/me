@@ -1,180 +1,296 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Theo Guegan — Background</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --rosewater: #dc8a78; --flamingo: #dd7878; --pink: #ea76cb;
-            --mauve: #8839ef; --red: #d20f39; --maroon: #e64553;
-            --peach: #fe640b; --yellow: #df8e1d; --green: #40a02b;
-            --teal: #179299; --sky: #04a5e5; --sapphire: #209fb5;
-            --blue: #1e66f5; --lavender: #7287fd;
-            --text: #4c4f69; --subtext1: #5c5f77; --subtext0: #6c6f85;
-            --overlay2: #7c7f93; --overlay1: #8c8fa1; --overlay0: #9ca0b0;
-            --surface2: #acb0be; --surface1: #bcc0cc; --surface0: #ccd0da;
-            --base: #eff1f5; --mantle: #e6e9ef; --crust: #dce0e8;
-        }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body {
-            background: var(--crust);
-            color: var(--text);
-            font-family: 'JetBrains Mono', monospace;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-        nav {
-            height: 36px;
-            background: var(--crust);
-            border-bottom: 1px solid var(--surface0);
-            display: flex;
-            align-items: stretch;
-            padding: 0 16px;
-            font-size: 13px;
-            flex-shrink: 0;
-        }
-        nav a {
-            display: flex;
-            align-items: center;
-            padding: 0 16px;
-            color: var(--subtext0);
-            text-decoration: none;
-            transition: color 0.15s, background 0.15s;
-        }
-        nav a:hover { color: var(--text); background: var(--surface0); }
-        nav a.active {
-            color: var(--text);
-            background: var(--base);
-            border-bottom: 1px solid var(--base);
-            margin-bottom: -1px;
-        }
-        .terminal-wrapper {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            padding: 24px 20px;
-        }
-        .terminal {
-            width: 100%;
-            max-width: 900px;
-            display: flex;
-            flex-direction: column;
-            border: 1px solid var(--surface0);
-            border-radius: 8px 8px 0 0;
-            overflow: hidden;
-        }
-        .terminal-titlebar {
-            background: var(--mantle);
-            height: 38px;
-            display: flex;
-            align-items: center;
-            padding: 0 14px;
-            flex-shrink: 0;
-            position: relative;
-        }
-        .terminal-buttons {
-            display: flex;
-            gap: 8px;
-        }
-        .terminal-buttons span {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-        }
-        .btn-red { background: var(--red); }
-        .btn-yellow { background: var(--yellow); }
-        .btn-green { background: var(--green); }
-        .terminal-title {
-            position: absolute;
-            left: 0;
-            right: 0;
-            text-align: center;
-            font-size: 12px;
-            color: var(--subtext0);
-            pointer-events: none;
-        }
-        .terminal-body {
-            background: var(--base);
-            padding: 16px 20px;
-            font-size: 13px;
-            line-height: 1.6;
-            flex: 1;
-            overflow-y: auto;
-        }
-        .prompt .user { color: var(--blue); }
-        .prompt .path { color: var(--text); }
-        .prompt .cmd { color: var(--green); }
-        .tree-line { color: var(--surface2); }
-        .dir { color: var(--blue); }
-        .label-role { color: var(--mauve); }
-        .label-period { color: var(--yellow); }
-        .label-location { color: var(--teal); }
-        .achievement { color: var(--peach); }
-        .file { color: var(--blue); }
-        .school { color: var(--mauve); }
-        .gpa { color: var(--green); }
-        .git-branch { color: var(--mauve); }
-        .git-new { color: var(--green); }
-        .git-modified { color: var(--yellow); }
-        .git-untracked { color: var(--red); }
-        .git-hint { color: var(--overlay1); }
-        .hack-award { color: var(--peach); }
-        .hack-location { color: var(--overlay1); }
-        .block { margin-bottom: 20px; }
-        .block:last-child { margin-bottom: 0; }
-        .cursor {
-            display: inline-block;
-            width: 8px;
-            height: 15px;
-            background: var(--text);
-            vertical-align: text-bottom;
-            animation: blink 1s step-end infinite;
-        }
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-        @media (max-width: 640px) {
-            .terminal-body { font-size: 11px; padding: 12px 10px; }
-            .terminal-wrapper { padding: 12px 8px; }
-        }
-    </style>
-</head>
-<body>
-    <nav>
-        <a href="index.html">~</a>
-        <a href="blog.html">blog</a>
-        <a href="background.html" class="active">background</a>
-        <a href="projects.html">projects</a>
-    </nav>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>curriculum_vitae</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            :root {
+                --rosewater: #dc8a78;
+                --flamingo: #dd7878;
+                --pink: #ea76cb;
+                --mauve: #8839ef;
+                --red: #d20f39;
+                --maroon: #e64553;
+                --peach: #fe640b;
+                --yellow: #df8e1d;
+                --green: #40a02b;
+                --teal: #179299;
+                --sky: #04a5e5;
+                --sapphire: #209fb5;
+                --blue: #1e66f5;
+                --lavender: #7287fd;
+                --text: #4c4f69;
+                --subtext1: #5c5f77;
+                --subtext0: #6c6f85;
+                --overlay2: #7c7f93;
+                --overlay1: #8c8fa1;
+                --overlay0: #9ca0b0;
+                --surface2: #acb0be;
+                --surface1: #bcc0cc;
+                --surface0: #ccd0da;
+                --base: #eff1f5;
+                --mantle: #e6e9ef;
+                --crust: #dce0e8;
+            }
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+            html {
+                cursor:
+                    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='22' fill='none' stroke='%234c4f69' stroke-width='2' stroke-linecap='round'><line x1='8' y1='1' x2='8' y2='8'/><line x1='3' y1='8' x2='13' y2='8'/><line x1='3' y1='8' x2='3' y2='16'/><line x1='13' y1='8' x2='13' y2='16'/></svg>")
+                        8 14,
+                    auto;
+            }
+            a,
+            button,
+            summary {
+                cursor:
+                    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='22' fill='none' stroke='%234c4f69' stroke-width='2' stroke-linecap='round'><line x1='8' y1='1' x2='8' y2='8'/><line x1='5' y1='8' x2='11' y2='8'/><line x1='5' y1='8' x2='5' y2='16'/><line x1='11' y1='8' x2='11' y2='16'/></svg>")
+                        8 14,
+                    pointer;
+            }
+            *,
+            *::before,
+            *::after {
+                scrollbar-width: none;
+            }
+            *::-webkit-scrollbar {
+                display: none;
+            }
+            body {
+                background: var(--crust);
+                color: var(--text);
+                font-family: "JetBrains Mono", monospace;
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+            }
+            nav {
+                height: 36px;
+                background: var(--crust);
+                border-bottom: 1px solid var(--surface0);
+                display: flex;
+                align-items: stretch;
+                padding: 0 16px;
+                font-size: 13px;
+                flex-shrink: 0;
+            }
+            nav a {
+                display: flex;
+                align-items: center;
+                padding: 0 16px;
+                color: var(--subtext0);
+                text-decoration: none;
+                transition:
+                    color 0.15s,
+                    background 0.15s;
+            }
+            nav a:hover {
+                color: var(--text);
+                background: var(--surface0);
+            }
+            nav a.active {
+                color: var(--text);
+                background: var(--base);
+                border-bottom: 1px solid var(--base);
+                margin-bottom: -1px;
+            }
+            .terminal-wrapper {
+                flex: 1;
+                display: flex;
+                justify-content: center;
+                padding: 24px 20px;
+            }
+            .terminal {
+                width: 100%;
+                max-width: 900px;
+                display: flex;
+                flex-direction: column;
+                border: 1px solid var(--surface0);
+                border-radius: 8px 8px 0 0;
+                overflow: hidden;
+            }
+            .terminal-titlebar {
+                background: var(--mantle);
+                height: 38px;
+                display: flex;
+                align-items: center;
+                padding: 0 14px;
+                flex-shrink: 0;
+                position: relative;
+            }
+            .terminal-buttons {
+                display: flex;
+                gap: 8px;
+            }
+            .terminal-buttons span {
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+            }
+            .btn-red {
+                background: var(--red);
+            }
+            .btn-yellow {
+                background: var(--yellow);
+            }
+            .btn-green {
+                background: var(--green);
+            }
+            .terminal-title {
+                position: absolute;
+                left: 0;
+                right: 0;
+                text-align: center;
+                font-size: 12px;
+                color: var(--subtext0);
+                pointer-events: none;
+            }
+            .terminal-body {
+                background: var(--base);
+                padding: 16px 20px;
+                font-size: 13px;
+                line-height: 1.6;
+                flex: 1;
+                overflow-y: auto;
+            }
+            .prompt .user {
+                color: var(--blue);
+            }
+            .prompt .path {
+                color: var(--text);
+            }
+            .prompt .cmd {
+                color: var(--green);
+            }
+            .tree-line {
+                color: var(--surface2);
+            }
+            .dir {
+                color: var(--blue);
+            }
+            .label-role {
+                color: var(--mauve);
+            }
+            .label-period {
+                color: var(--yellow);
+            }
+            .label-location {
+                color: var(--teal);
+            }
+            .achievement {
+                color: var(--peach);
+            }
+            .file {
+                color: var(--blue);
+            }
+            .school {
+                color: var(--mauve);
+            }
+            .gpa {
+                color: var(--green);
+            }
+            .git-branch {
+                color: var(--mauve);
+            }
+            .git-new {
+                color: var(--green);
+            }
+            .git-modified {
+                color: var(--yellow);
+            }
+            .git-untracked {
+                color: var(--red);
+            }
+            .git-hint {
+                color: var(--overlay1);
+            }
+            .hack-award {
+                color: var(--peach);
+            }
+            .hack-location {
+                color: var(--overlay1);
+            }
+            .block {
+                margin-bottom: 20px;
+            }
+            .block:last-child {
+                margin-bottom: 0;
+            }
+            .cursor {
+                display: inline-block;
+                width: 8px;
+                height: 15px;
+                background: var(--text);
+                vertical-align: text-bottom;
+                animation: blink 1s step-end infinite;
+            }
+            @keyframes blink {
+                0%,
+                100% {
+                    opacity: 1;
+                }
+                50% {
+                    opacity: 0;
+                }
+            }
+            @media (max-width: 640px) {
+                .terminal-body {
+                    font-size: 11px;
+                    padding: 12px 10px;
+                }
+                .terminal-wrapper {
+                    padding: 12px 8px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <nav>
+            <a href="index.html">~</a>
+            <a href="blog.html">blog</a>
+            <a href="background.html" class="active">background</a>
+            <a href="projects.html">projects</a>
+        </nav>
 
-    <div class="terminal-wrapper">
-        <div class="terminal">
-            <div class="terminal-titlebar">
-                <div class="terminal-buttons">
-                    <span class="btn-red"></span>
-                    <span class="btn-yellow"></span>
-                    <span class="btn-green"></span>
+        <div class="terminal-wrapper">
+            <div class="terminal">
+                <div class="terminal-titlebar">
+                    <div class="terminal-buttons">
+                        <span class="btn-red"></span>
+                        <span class="btn-yellow"></span>
+                        <span class="btn-green"></span>
+                    </div>
+                    <div class="terminal-title">theguega@me: ~/background</div>
                 </div>
-                <div class="terminal-title">theguega@me: ~/background</div>
-            </div>
-            <div class="terminal-body">
-
-<!-- COMMAND 1: tree experience/ -->
-<div class="block">
-<span class="prompt"><span class="user">theguega@me</span><span class="path">:~$</span> <span class="cmd">tree experience/</span></span>
-<pre>
+                <div class="terminal-body">
+                    <!-- COMMAND 1: tree experience/ -->
+                    <div class="block">
+                        <span class="prompt"
+                            ><span class="user">theguega@me</span
+                            ><span class="path">:~$</span>
+                            <span class="cmd">tree experience/</span></span
+                        >
+                        <pre>
 <span class="dir">experience/</span>
 <span class="tree-line">├──</span> <span class="dir">stealth-startup/</span>
 <span class="tree-line">│   ├──</span> <span class="label-role">role:</span> Machine Learning Intern
 <span class="tree-line">│   ├──</span> <span class="label-period">period:</span> Feb 2026 - Present
-<span class="tree-line">│   ├──</span> <span class="label-location">location:</span> Palo Alto, CA
-<span class="tree-line">│   └──</span> desc: Working on physical agents
+<span class="tree-line">│   ├──</span> <span class="label-location">location:</span> Redwood City, CA
+<span class="tree-line">│   └──</span> <span class="dir">tasks/</span>
+<span class="tree-line">│       ├──</span> CEO: Claire Delaunay
+<span class="tree-line">│       ├──</span> Training and evaluating VLAs and vision models for robotics control.
+<span class="tree-line">│       ├──</span> Deploying end-to-end infrastructure : data-collection, simulation, networking, videos
+<span class="tree-line">│       └──</span> More public information soon..
 <span class="tree-line">├──</span> <span class="dir">thales-las/</span>
 <span class="tree-line">│   ├──</span> <span class="label-role">role:</span> Embedded Drone Software Intern
 <span class="tree-line">│   ├──</span> <span class="label-period">period:</span> Sept 2024 - Feb 2025
@@ -197,35 +313,55 @@
 <span class="tree-line">    ├──</span> <span class="label-period">period:</span> Sept 2024 - July 2025
 <span class="tree-line">    ├──</span> <span class="label-location">location:</span> Compiegne, France
 <span class="tree-line">    └──</span> desc: Led technical projects for Airbus, €30k+ in projects</pre>
-</div>
+                    </div>
 
-<!-- COMMAND 2: ls education/ -->
-<div class="block">
-<span class="prompt"><span class="user">theguega@me</span><span class="path">:~$</span> <span class="cmd">ls education/</span></span>
-<pre>
+                    <!-- COMMAND 2: ls education/ -->
+                    <div class="block">
+                        <span class="prompt"
+                            ><span class="user">theguega@me</span
+                            ><span class="path">:~$</span>
+                            <span class="cmd">ls education/</span></span
+                        >
+                        <pre>
 <span class="file">waterloo_ms_ce_2025.txt</span>    <span class="file">utc_ms_cs_2021-2026.txt</span></pre>
-</div>
+                    </div>
 
-<div class="block">
-<span class="prompt"><span class="user">theguega@me</span><span class="path">:~$</span> <span class="cmd">cat education/waterloo_ms_ce_2025.txt</span></span>
-<pre>
+                    <div class="block">
+                        <span class="prompt"
+                            ><span class="user">theguega@me</span
+                            ><span class="path">:~$</span>
+                            <span class="cmd"
+                                >cat education/waterloo_ms_ce_2025.txt</span
+                            ></span
+                        >
+                        <pre>
 <span class="school">University of Waterloo</span>
 MS in Computer Engineering — Winter 2025
 Deep Learning, Robotics. <span class="gpa">GPA 4/4</span></pre>
-</div>
+                    </div>
 
-<div class="block">
-<span class="prompt"><span class="user">theguega@me</span><span class="path">:~$</span> <span class="cmd">cat education/utc_ms_cs_2021-2026.txt</span></span>
-<pre>
+                    <div class="block">
+                        <span class="prompt"
+                            ><span class="user">theguega@me</span
+                            ><span class="path">:~$</span>
+                            <span class="cmd"
+                                >cat education/utc_ms_cs_2021-2026.txt</span
+                            ></span
+                        >
+                        <pre>
 <span class="school">Universite de Technologie de Compiegne</span>
 MS in Computer Science — 2021 - 2026
 Embedded Computing &amp; Autonomous Systems. <span class="gpa">GPA 5/5</span></pre>
-</div>
+                    </div>
 
-<!-- COMMAND 3: ls hackathons/ -->
-<div class="block">
-<span class="prompt"><span class="user">theguega@me</span><span class="path">:~$</span> <span class="cmd">ls hackathons/</span></span>
-<pre>
+                    <!-- COMMAND 3: ls hackathons/ -->
+                    <div class="block">
+                        <span class="prompt"
+                            ><span class="user">theguega@me</span
+                            ><span class="path">:~$</span>
+                            <span class="cmd">ls hackathons/</span></span
+                        >
+                        <pre>
 🚀 Hackathons
 - UTAC Autonomous vehicle challenge <span class="hack-location">(France)</span><span class="hack-award"> : best school award 2024 | won 2025 edition</span>
 - FIT Coding Challenge 2025 <span class="hack-location">(Bosnia)</span>
@@ -234,12 +370,16 @@ Embedded Computing &amp; Autonomous Systems. <span class="gpa">GPA 5/5</span></p
 - Mistral AI Worldwide Hackathon 2026: build the next era of AI <span class="hack-location">(San Francisco)</span>
 - Seeed 2026 Embodied AI Hackathon in Santa Clara<span class="hack-award"> : won 2nd prize</span>
 - RoboHacks : NASA, Deepmind, YC <span class="hack-location">(San Francisco)</span></pre>
-</div>
+                    </div>
 
-<!-- COMMAND 4: git status -->
-<div class="block">
-<span class="prompt"><span class="user">theguega@me</span><span class="path">:~$</span> <span class="cmd">git status</span></span>
-<pre>
+                    <!-- COMMAND 4: git status -->
+                    <div class="block">
+                        <span class="prompt"
+                            ><span class="user">theguega@me</span
+                            ><span class="path">:~$</span>
+                            <span class="cmd">git status</span></span
+                        >
+                        <pre>
 <span class="git-branch">On branch main</span>
 Your branch is up to date with 'origin/main'.
 
@@ -254,12 +394,15 @@ Changes to be committed:
 Untracked files:
   <span class="git-hint">(use "git add &lt;file&gt;..." to include in what will be committed)</span>
         <span class="git-untracked">next-big-thing/</span></pre>
-</div>
+                    </div>
 
-<span class="prompt"><span class="user">theguega@me</span><span class="path">:~$</span></span> <span class="cursor"></span>
-
+                    <span class="prompt"
+                        ><span class="user">theguega@me</span
+                        ><span class="path">:~$</span></span
+                    >
+                    <span class="cursor"></span>
+                </div>
             </div>
         </div>
-    </div>
-</body>
+    </body>
 </html>
