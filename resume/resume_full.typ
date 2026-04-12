@@ -65,30 +65,33 @@
   )[
     - Led the deployment of control software from simulation to Renault Zoe (ROS/Python), validating algorithms in real-world track scenarios.
     - Designed a homogeneous waypoint-based control law with (99% sim safety).
-    - Deployed Adaptive Cruise Control, Static obstacle avoidance and navigation algorithms based on the same control law with dynamic dispatch.
+    - Deployed adaptive cruise control (ACC), static obstacle avoidance and navigation algorithms based on the same control law with dynamic dispatch.
     - Won 2025 and 2024 UTAC edition.
   ]
 ]
 
-#custom-title("Hackathons - Projects")[
-  #project-heading("Projects")[
-    - SO-ARM experiments, some OSS tools, neural MPC approximation, reachy mini, all under:
-    - https://www.theguega.github.io/me
+#custom-title("Projects")[
+  #project-heading("Personal")[
+    - some robotics projects : SO-ARM-101; Reachy Mini; Drones.
+    - peillute: a distributed p2p paiement system in Rust with a Dioxus frontend.
+    - neural approximation of a MPC controller (90% success Mujoco for 3DOF).
+    - Kaggle : Brain-to-text '25
+    - more under : https://www.theguega.github.io/me.
   ]
 
-  #project-heading("Hackathons - Competitions")[
+  #project-heading("Hackathons")[
     - #link("https://www.utac.com/challenge-utac")[UTAC Autonomous vehicle challenge (France) : best school award 2024 | won 2025 edition]
     - FIT Coding Challenge 2025 (Bosnia)
     - UTC x st2i hackathon (France) : winners
     - #link("https://luma.com/7xkp31u4")[SWARM, The World’s Largest Swarm Robotics Hackathon (Canada)]
     - #link("https://luma.com/mistralhack-sanfrancisco?tk=5OVyT1")[Mistral AI Worldwide Hackathon 2026: build the next era of AI (San Francisco)]
-    - #link("https://luma.com/zsaa3r3d?tk=BmAVah")[Seeed 2026 Embodied AI Hackathon in Santa Clara : won 2nd prize]
+    - #link("https://luma.com/zsaa3r3d?tk=BmAVah")[Seeed-Nvidia-Hugginface 2026 Embodied AI Hackathon in Santa Clara : won 2nd prize]
   ]
 ]
 
 #custom-title("Education")[
   #education-heading(
-    "Université de Technologie de Compiègne (UTC)",
+    "Universite de Technologie de Compiegne",
     "Compiègne, France",
     "M.Sc. Computer Science",
     "Embedded & Autonomous Systems",
