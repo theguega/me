@@ -37,6 +37,9 @@
     "Present"
   )[
     - CEO: Claire Delaunay
+    - Training and evaluating VLAs and vision models for robotics control.
+    - Developing agentic frameworks for robotics
+    - Deploying end-to-end infrastructure : data-collection, simulation, networking, videos
     - More public information soon..
   ]
 

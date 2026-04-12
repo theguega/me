@@ -211,6 +211,10 @@
                 color: var(--text);
                 font-weight: 500;
             }
+            .post-header .post-date {
+                color: var(--overlay1);
+                font-size: 12px;
+            }
             .post-header .spacer {
                 flex: 1;
             }
@@ -553,12 +557,27 @@
                 post.className = "post" + (expanded ? "" : " collapsed");
 
                 const shortName = filename.split("/").pop();
+                const match = shortName.match(/^(\d{4}-\d{2}-\d{2})-(.+)\.md$/);
+                let title = shortName;
+                let dateStr = "";
+                if (match) {
+                    const d = new Date(match[1] + "T00:00:00");
+                    dateStr = d.toLocaleDateString("en-US", {
+                        month: "short",
+                        day: "numeric",
+                        year: "numeric",
+                    });
+                    title = match[2]
+                        .replace(/-/g, " ")
+                        .replace(/^\w/, (c) => c.toUpperCase());
+                }
 
                 post.innerHTML = `
                 <div class="post-header">
                     <svg class="chevron" viewBox="0 0 16 16"><path d="M12.78 5.22a.75.75 0 010 1.06l-4.25 4.25a.75.75 0 01-1.06 0L3.22 6.28a.75.75 0 011.06-1.06L8 8.94l3.72-3.72a.75.75 0 011.06 0z"/></svg>
                     <svg viewBox="0 0 16 16"><path d="M3.75 1.5a.25.25 0 00-.25.25v11.5c0 .138.112.25.25.25h8.5a.25.25 0 00.25-.25V6H9.75A1.75 1.75 0 018 4.25V1.5zm5.75.56v2.19c0 .138.112.25.25.25h2.19zM2 1.75C2 .784 2.784 0 3.75 0h5.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v8.586A1.75 1.75 0 0112.25 15h-8.5A1.75 1.75 0 012 13.25z"/></svg>
-                    <span class="filename">${shortName}</span>
+                    <span class="filename">${title}</span>
+                    ${dateStr ? `<span class="post-date">${dateStr}</span>` : ""}
                     <span class="spacer"></span>
                     <div class="view-toggle" onclick="event.stopPropagation()">
                         <button class="active" data-view="preview">Preview</button>
