@@ -37,6 +37,9 @@
     "Present"
   )[
     - CEO: Claire Delaunay
+    - Training and evaluating VLAs and vision models for robotics control.
+    - Developing agentic frameworks for robotics
+    - Deploying end-to-end infrastructure : data-collection, simulation, networking, videos
     - More public information soon..
   ]
 
@@ -70,7 +73,6 @@
 #custom-title("Projects")[
   #project-heading("Personal")[
     - some robotics projects : SO-ARM-101; Reachy Mini; Drones.
-    - contextpack-md : a simple tool to extract context for your LLM from any pdf/web page.
     - peillute: a distributed p2p paiement system in Rust with a Dioxus frontend.
     - neural approximation of a MPC controller (90% success Mujoco for 3DOF).
     - Kaggle : Brain-to-text '25

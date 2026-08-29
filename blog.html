@@ -300,6 +300,13 @@
             .post-preview em {
                 font-style: italic;
             }
+            .post-preview a {
+                color: var(--blue);
+                text-decoration: none;
+            }
+            .post-preview a:hover {
+                text-decoration: underline;
+            }
             .post-preview code {
                 background: var(--crust);
                 padding: 2px 5px;
@@ -462,8 +469,20 @@
                         "<strong>$1</strong>",
                     );
                     text = text.replace(
+                        /__(.+?)__/g,
+                        "<strong>$1</strong>",
+                    );
+                    text = text.replace(
                         /(?<!\*)\*(?!\*)(.+?)(?<!\*)\*(?!\*)/g,
                         "<em>$1</em>",
+                    );
+                    text = text.replace(
+                        /(?<![_\w])_([^_]+)_(?![_\w])/g,
+                        "<em>$1</em>",
+                    );
+                    text = text.replace(
+                        /\[([^\]]+)\]\(([^)]+)\)/g,
+                        '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>',
                     );
                     return text;
                 }
@@ -635,22 +654,54 @@
             const container = document.getElementById("posts");
 
             async function loadPosts() {
-                try {
-                    const res = await fetch(
-                        "https://api.github.com/repos/theguega/me/contents/blog",
-                    );
-                    if (!res.ok) throw new Error(res.status);
-                    const files = await res.json();
-                    const posts = files
-                        .filter((f) => f.name.endsWith(".md"))
-                        .sort((a, b) => b.name.localeCompare(a.name));
-                    if (posts.length === 0) return;
-                    posts.forEach((f, i) =>
-                        container.appendChild(
-                            createPost("blog/" + f.name, i === 0),
-                        ),
-                    );
-                } catch {}
+                let posts = [];
+
+                if (location.protocol.startsWith("http")) {
+                    try {
+                        const res = await fetch("blog/");
+                        if (res.ok) {
+                            const text = await res.text();
+                            const doc = new DOMParser().parseFromString(
+                                text,
+                                "text/html",
+                            );
+                            const links = Array.from(doc.querySelectorAll("a"))
+                                .map((a) => a.getAttribute("href"))
+                                .filter((href) => href && href.endsWith(".md"))
+                                .map((href) =>
+                                    decodeURIComponent(href.split("/").pop()),
+                                );
+                            if (links.length > 0) {
+                                posts = Array.from(new Set(links)).map(
+                                    (name) => ({ name }),
+                                );
+                            }
+                        }
+                    } catch {}
+                }
+
+                if (posts.length === 0) {
+                    try {
+                        const res = await fetch(
+                            "https://api.github.com/repos/theguega/me/contents/blog",
+                        );
+                        if (res.ok) {
+                            const files = await res.json();
+                            posts = files.filter(
+                                (f) => f.name && f.name.endsWith(".md"),
+                            );
+                        }
+                    } catch {}
+                }
+
+                posts.sort((a, b) => b.name.localeCompare(a.name));
+                if (posts.length === 0) return;
+
+                posts.forEach((f, i) =>
+                    container.appendChild(
+                        createPost("blog/" + f.name, i === 0),
+                    ),
+                );
             }
 
             loadPosts();
