@@ -21,8 +21,8 @@
 
 #custom-title("Skills")[
   #skills()[
-    - *Robotics & Control:* ROS2, dora-rs, RTOS, Behavior Trees, IK Control, MPC
-    - *AI & ML:* VLAs, Vision models, Reinforcement Learning, Imitation Learning, PyTorch, JAX.
+    - *Robotics & Control:* ROS2, dora-rs, RTOS, Pinocchio, IK/FK, Impedance Control, CAN bus, MPC
+    - *AI & ML:* VLAs, Flow Matching, LoRA/PEFT, Vision models, Imitation Learning, PyTorch, JAX.
     - *Languages:* Python 3.13, Rust, C, C++17, MATLAB, Lua, Bash
     - *Simulation & Tools:* MuJoCo, Isaac Sim, Genesis, Gazebo, Docker, CMake, Git, CI/CD
   ]
@@ -30,17 +30,17 @@
 
 #custom-title("Experience")[
   #work-heading(
-    "Machine Learning Intern",
-    "Stealth Startup",
-    "Palo Alto, CA",
+    "Founding Engineer, Embodied AI",
+    "Opalin",
+    "Redwood City, CA",
     datetime(year:2026, month:2, day:1),
     "Present"
   )[
-    - CEO: Claire Delaunay
-    - Training and evaluating VLAs and vision models for robotics control.
-    - Developing agentic frameworks for robotics
-    - Deploying end-to-end infrastructure : data-collection, simulation, networking, videos
-    - More public information soon..
+    - Data platform for imitation learning: stream sync, HDF5 conversion, unified loaders, curation.
+    - Web explorer (multi-view + 3D URDF) for session inspection and annotation; daily demo-QA tool.
+    - Frozen-DINOv3 phase/progress/contact models pre-annotate episodes: 97% top-1, -70% labeling.
+    - VLA fine-tuning (LoRA/PEFT, flow matching); runtime: Pinocchio IK/FK, RNEA, CAN bus, teleop.
+    - Curation over volume: 90 consistent demos beat 250, folding success 20% to 98%.
   ]
 
   #work-heading(
@@ -76,7 +76,6 @@
     - peillute: a distributed p2p paiement system in Rust with a Dioxus frontend.
     - neural approximation of a MPC controller (90% success Mujoco for 3DOF).
     - Kaggle : Brain-to-text '25
-    - more under : https://www.theguega.github.io/me.
   ]
 
   #project-heading("Hackathons")[
@@ -85,7 +84,8 @@
     - UTC x st2i hackathon (France) : winners
     - #link("https://luma.com/7xkp31u4")[SWARM, The World’s Largest Swarm Robotics Hackathon (Canada)]
     - #link("https://luma.com/mistralhack-sanfrancisco?tk=5OVyT1")[Mistral AI Worldwide Hackathon 2026: build the next era of AI (San Francisco)]
-    - #link("https://luma.com/zsaa3r3d?tk=BmAVah")[Seeed-Nvidia-Hugginface 2026 Embodied AI Hackathon in Santa Clara : won 2nd prize]
+    - #link("https://luma.com/zsaa3r3d?tk=BmAVah")[Seeed x NVIDIA x Hugging Face 2026 Embodied AI Hackathon (Santa Clara) : won 2nd prize]
+    - #link("https://www.open-world.dev/")[Open World Hackathon 2026 by VLGE (San Francisco) : won 2nd prize]
   ]
 ]
 
