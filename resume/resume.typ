@@ -30,10 +30,9 @@
     datetime(year: 2026, month: 2, day: 1),
     "Present",
   )[
-    - Trained efficient visuomotor policies: latent encoders over multi-view video and proprioception, deployed as real-time robot policies.
-    - Variance-targeted data curation: 2.8x less curated demonstrations beat unfiltered ones, lifting folding success from 20% to 98%.
-    - Frozen-DINOv3 phase, progress and contact estimator annotates every episode (97% top-1), cutting human labeling 70%.
-    - End-to-end data engine: multi-stream sync, 3D dataset viewer (multi-view, URDF) used daily for QA.
+    - VLAs and world action models: architectures, training, fine-tuning and evaluation of visuomotor policies over multi-view video and proprioception, run in real time on the robots.
+    - End-to-end training loop from data to fleet: new experiments every day, each with evaluation and actionable metrics.
+    - Data curation: 3D dataset viewer; per-task statistics (3D workspace and grasp-point coverage, phase durations, smoothness) and robust outlier detection (MAD, MCD, DTW novelty, near-duplicates); half the data, success 50% to 98%.
     - Real-time arm control with Pinocchio IK/FK and impedance control to 0.1 mm over CAN.
   ]
 
@@ -45,13 +44,13 @@
     datetime(year: 2025, month: 2, day: 1),
   )[
     - Fully decentralized embedded AI for drone swarm coordination and control, removing the need for a permanent datalink to the ground station.
-    - Embedded Lua script engine and local script generation for rapid mission prototyping (Rust harness, local inference, end-to-end deployment).
+    - Embedded Lua script engine and on-device LLM voice-to-script generation (98% correctness) for rapid mission prototyping (Rust harness, end-to-end deployment).
     - Cut new-mission deployment time by 10x and improved reliability and predictability by 4x.
     - Part of Thales' COHESION demonstrator (JDEC 2024), featured in French media.
   ]
 
   #work-heading(
-    "Research Assistant",
+    "Research Assistant, Autonomous Vehicle Control Lead",
     "CNRS Hauts-de-France, Heudiasyc Lab",
     "Compiègne, France",
     datetime(year: 2024, month: 2, day: 1),
@@ -118,9 +117,14 @@
   ]
 ]
 
-#custom-title("Projects & Awards")[
-  #skills()[
-    - *Open source:* SO-ARM-101 and Reachy Mini manipulation stacks; autonomous drones; #link("https://github.com/theguega/peillute")[peillute], a distributed P2P payment system in Rust; Kaggle Brain-to-Text '25.
-    - *Hackathons:* 2nd prize, Seeed x NVIDIA x Hugging Face Embodied AI (Santa Clara, 2026); 2nd prize, Open World by VLGE (San Francisco, 2026); winner, UTC x ST2I (France); Mistral AI Worldwide (San Francisco, 2026); SWARM Robotics (Canada).
-  ]
+#custom-title("Hackathons")[
+  - 2nd prize, Seeed x NVIDIA x Hugging Face Embodied AI Hackathon (Santa Clara, 2026).
+  - 2nd prize, Open World Hackathon by VLGE (San Francisco, 2026).
+  - Winner, UTC x ST2I Hackathon (France). Also: Mistral AI Worldwide (San Francisco, 2026), SWARM Robotics (Canada).
+]
+
+#custom-title("Open Source")[
+  - #link("https://github.com/theguega/fathom")[fathom]: zero-overhead Rust visualization of multimodal spatiotemporal data (video, depth, point clouds, trajectories).
+  - #link("https://github.com/theguega/drover")[drover]: Rust agent runtime running coding agents in git worktrees, driven from the terminal or Discord.
+  - Reachy Mini and SO-ARM-101 manipulation stacks; #link("https://github.com/theguega/peillute")[peillute], distributed P2P payments in Rust; Kaggle Brain-to-Text '25.
 ]
