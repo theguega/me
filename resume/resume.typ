@@ -62,27 +62,6 @@
   ]
 ]
 
-#custom-title("Research")[
-  #project-heading(
-    "Behavior Cloning of MPC for 3-DOF Robotic Manipulators",
-    stack: "arXiv:2606.00383",
-    project-url: "https://arxiv.org/abs/2606.00383",
-  )[
-    - Poster at the Workshop on RL in the Era of Imitation Learning, IEEE ICRA 2026.
-    - Distilled an MPC policy into neural surrogates: 3x lower inference latency at 85% success; static architectures outperform temporal ones.
-    - Ablation and statistical studies over traditional ML algorithms.
-  ]
-]
-
-#custom-title("Skills")[
-  #skills()[
-    - *Learning:* imitation learning, LeRobot, VLAs, JEPA and latent-predictive objectives, multimodal video architectures, flow matching, LoRA/PEFT
-    - *Robot systems:* multi-input teleoperation devices, data curation pipelines, real-time control, fleet deployment, Pinocchio IK/FK, RNEA, impedance control, MPC, ROS2, dora-rs, RTOS, CAN
-    - *Scale:* multi-GPU training, efficient inference, PyTorch, Docker, CI/CD, Dagster, DuckDB, Lance
-    - *Languages & sim:* Python 3.12+, Rust, C++17, Zig, Lua, MATLAB, Bash; mujoco, genesis
-  ]
-]
-
 #custom-title("Education")[
   #education-heading(
     "University of Waterloo",
@@ -107,12 +86,33 @@
   ]
 ]
 
+#custom-title("Research")[
+  #project-heading(
+    "Behavior Cloning of MPC for 3-DOF Robotic Manipulators",
+    stack: "arXiv:2606.00383",
+    project-url: "https://arxiv.org/abs/2606.00383",
+  )[
+    - Poster at the Workshop on RL in the Era of Imitation Learning, IEEE ICRA 2026.
+    - Distilled an MPC policy into neural surrogates: 3x lower inference latency at 85% success; static architectures outperform temporal ones.
+    - Ablation and statistical studies over traditional ML algorithms.
+  ]
+]
+
+#custom-title("Skills")[
+  #skills()[
+    - *Learning:* imitation learning, LeRobot, VLAs, JEPA and latent-predictive objectives, multimodal video architectures, flow matching, LoRA/PEFT
+    - *Robot systems:* multi-input teleoperation devices, data curation pipelines, real-time control, fleet deployment, Pinocchio IK/FK, RNEA, impedance control, MPC, ROS2, dora-rs, RTOS, CAN
+    - *Scale:* multi-GPU training, efficient inference, PyTorch, Docker, CI/CD, Dagster, DuckDB, Lance
+    - *Languages & sim:* Python 3.12+, Rust, C++17, Zig, Lua, MATLAB, Bash; mujoco, genesis
+  ]
+]
+
 #custom-title("Hackathons")[
   - 2nd prize, Seeed x NVIDIA x Hugging Face Embodied AI Hackathon (2026); 2nd prize, Open World Hackathon by VLGE (2026); Winner, UTC x ST2I Hackathon.
 ]
 
 #custom-title("Open Source")[
   - #link("https://github.com/theguega/fathom")[fathom]: zero-overhead Rust visualization of multimodal spatiotemporal data (video, depth, point clouds, trajectories).
-  - #link("https://github.com/theguega/drover")[drover]: Rust agent runtime running coding agents in git worktrees, driven from the terminal or Discord.
+  - #link("https://arxiv.org/abs/2610.28480")[SuperMimic reproduction]: one differentiable world model for humanoid whole-body control, policy trained by backpropagation-through-time over imagined rollouts.
   - Reachy Mini and SO-ARM-101 manipulation stacks; #link("https://github.com/theguega/peillute")[peillute], distributed P2P payments in Rust; Kaggle Brain-to-Text '25.
 ]
