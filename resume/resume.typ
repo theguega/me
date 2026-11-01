@@ -30,8 +30,8 @@
     datetime(year: 2026, month: 2, day: 1),
     "Present",
   )[
+    - Teleop-to-fleet pipeline: data from multiple teleoperators gathered, filtered and evaluated under the supervision of a single operator, within a day; down from days and weeks per experiment.
     - VLAs and world action models: architectures, training, fine-tuning and evaluation of visuomotor policies over multi-view video and proprioception, run in real time on the robots.
-    - End-to-end training loop from data to fleet: new experiments every day, each with evaluation and actionable metrics.
     - Data curation: 3D dataset viewer; per-task statistics (3D workspace and grasp-point coverage, phase durations, smoothness) and robust outlier detection (MAD, MCD, DTW novelty, near-duplicates); half the data, success 50% to 98%.
     - Real-time arm control with Pinocchio IK/FK and impedance control to 0.1 mm over CAN.
   ]
@@ -60,16 +60,6 @@
     - Led sim-to-real deployment of the control stack onto a Renault Zoe (ROS/Python): waypoint control law, adaptive cruise control, obstacle avoidance; 99% safety in simulation.
     - 1st School Award (2024), 1st place Open Category (2025), UTAC Challenge.
   ]
-
-  #work-heading(
-    "Business Manager",
-    "Junior UTC",
-    "Compiègne, France",
-    datetime(year: 2023, month: 9, day: 1),
-    datetime(year: 2024, month: 9, day: 1),
-  )[
-    - Led technical projects for clients such as Airbus (over €30,000), coordinating student engineers.
-  ]
 ]
 
 #custom-title("Research")[
@@ -80,16 +70,16 @@
   )[
     - Poster at the Workshop on RL in the Era of Imitation Learning, IEEE ICRA 2026.
     - Distilled an MPC policy into neural surrogates: 3x lower inference latency at 85% success; static architectures outperform temporal ones.
-    - Ablation and statistical studies over traditional ML algorithms
+    - Ablation and statistical studies over traditional ML algorithms.
   ]
 ]
 
 #custom-title("Skills")[
   #skills()[
-    - *Learning:* JEPA and latent-predictive objectives, multimodal video architectures, VLAs, flow matching, imitation learning, LoRA/PEFT
-    - *Scale:* multi-GPU training, efficient inference, data curation pipelines, PyTorch, JAX, Docker, CI/CD
-    - *Planning & control:* MPC, Pinocchio IK/FK, RNEA, impedance control, ROS2, dora-rs, RTOS, CAN
-    - *Languages & sim:* Python 3.12+, Rust, C++17, C, MATLAB, Bash; MuJoCo, Isaac Sim, Genesis, Gazebo
+    - *Learning:* imitation learning, LeRobot, VLAs, JEPA and latent-predictive objectives, multimodal video architectures, flow matching, LoRA/PEFT
+    - *Robot systems:* multi-input teleoperation devices, data curation pipelines, real-time control, fleet deployment, Pinocchio IK/FK, RNEA, impedance control, MPC, ROS2, dora-rs, RTOS, CAN
+    - *Scale:* multi-GPU training, efficient inference, PyTorch, Docker, CI/CD, Dagster, DuckDB, Lance
+    - *Languages & sim:* Python 3.12+, Rust, C++17, Zig, Lua, MATLAB, Bash; mujoco, genesis
   ]
 ]
 
@@ -118,9 +108,7 @@
 ]
 
 #custom-title("Hackathons")[
-  - 2nd prize, Seeed x NVIDIA x Hugging Face Embodied AI Hackathon (Santa Clara, 2026).
-  - 2nd prize, Open World Hackathon by VLGE (San Francisco, 2026).
-  - Winner, UTC x ST2I Hackathon (France). Also: Mistral AI Worldwide (San Francisco, 2026), SWARM Robotics (Canada).
+  - 2nd prize, Seeed x NVIDIA x Hugging Face Embodied AI Hackathon (2026); 2nd prize, Open World Hackathon by VLGE (2026); Winner, UTC x ST2I Hackathon.
 ]
 
 #custom-title("Open Source")[
