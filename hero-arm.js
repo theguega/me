@@ -13,7 +13,7 @@ const HOVER_Z = 26,
 const WRIST_GRASP_Z = GRASP_Z + 5; // wrist height that puts the block between the fingers
 const BLOCK_PX = 8;
 
-// frames the predicted arm leads the target by
+// frames the imagined arm rolls ahead of the real one
 const LOOKAHEAD = 14;
 // share of the remaining distance the real arm covers per frame
 const FOLLOW_RATE = 0.12;
@@ -60,12 +60,14 @@ const clamp01 = (v) => Math.min(1, Math.max(0, v));
 // the task as a timeline: each segment eases from the previous waypoint to its own
 const SEQ = [];
 const where = { red: "src", blue: "src" };
+let current = null;
 
 function add(p, dur, grip = 1, held = null) {
-    SEQ.push({ p, dur, grip, held, where: { ...where } });
+    SEQ.push({ p, dur, grip, held, who: current, where: { ...where } });
 }
 
 function pick(name) {
+    current = name;
     const { x, y } = SRC[name];
     add({ x, y, z: HOVER_Z }, 50);
     add({ x, y, z: WRIST_GRASP_Z }, 30);
@@ -74,6 +76,7 @@ function pick(name) {
 }
 
 function place(name) {
+    current = name;
     const { x, y } = BIN[name];
     add({ x, y, z: HOVER_Z }, 50, 0, name);
     add({ x, y, z: WRIST_GRASP_Z }, 30, 0, name);
@@ -87,6 +90,7 @@ pick("red");
 place("red");
 pick("blue");
 place("blue");
+current = null;
 add(HOME, 50);
 
 const TOTAL = SEQ.reduce((n, s) => n + s.dur, 0);
@@ -109,6 +113,7 @@ function sample(frame) {
         },
         grip: mix(prev.grip, cur.grip, e),
         held: cur.held,
+        who: cur.who,
         where: cur.where,
     };
 }
@@ -155,7 +160,8 @@ function proj(p) {
 // position in the latent plot: yaw and height of the end effector
 function embed(p) {
     const yaw = Math.atan2(p.y, p.x);
-    const u = clamp01((yaw - 0.2) / 2.2);
+    // screen x grows toward negative yaw, so the plot runs the same way
+    const u = 1 - clamp01((yaw - 0.2) / 2.2);
     const v = clamp01(p.z / 36);
     return {
         px: PLOT.x + u * PLOT.size,
@@ -248,7 +254,7 @@ function drawBlock(p, name) {
 }
 
 // end-effector and commanded target in a 2D embedding, gap to the prediction as a bar
-function drawLatent(actualPt, predPt, goalPt) {
+function drawLatent(actualPt, predPt, goalPt, goalColor) {
     const { x, y, size } = PLOT;
     ctx.fillStyle = C_PLOT_BG;
     ctx.fillRect(x, y, size, size);
@@ -265,7 +271,7 @@ function drawLatent(actualPt, predPt, goalPt) {
     });
     ctx.globalAlpha = 1;
 
-    ctx.strokeStyle = C_GOAL;
+    ctx.strokeStyle = goalColor;
     ctx.strokeRect(Math.floor(goalPt.px) - 2, Math.floor(goalPt.py) - 2, 4, 4);
 
     ctx.strokeStyle = C_GHOST;
@@ -319,6 +325,18 @@ function drawClaw(w, grip) {
     ctx.restore();
 }
 
+// the imagined arm runs the real arm's follower forward over the planned targets
+function imagine(from, t, steps) {
+    const a = { x: from.x, y: from.y, z: from.z };
+    for (let k = 1; k <= steps; k++) {
+        const target = sample(t + k).p;
+        a.x += (target.x - a.x) * FOLLOW_RATE;
+        a.y += (target.y - a.y) * FOLLOW_RATE;
+        a.z += (target.z - a.z) * FOLLOW_RATE;
+    }
+    return a;
+}
+
 function drawFrame(t) {
     ctx.fillStyle = C_BG;
     ctx.fillRect(0, 0, 128, 128);
@@ -345,13 +363,12 @@ function drawFrame(t) {
     ctx.globalAlpha = 1;
 
     const f = sample(t);
-    const ahead = sample(t + LOOKAHEAD);
     actual.x += (f.p.x - actual.x) * FOLLOW_RATE;
     actual.y += (f.p.y - actual.y) * FOLLOW_RATE;
     actual.z += (f.p.z - actual.z) * FOLLOW_RATE;
 
     const pose = armPose(actual);
-    const ghost = armPose(ahead.p);
+    const ghost = armPose(imagine(actual, t, LOOKAHEAD));
     drawGhost(ghost);
 
     // painter's order: parts with larger y are farther, drawn first
@@ -391,7 +408,12 @@ function drawFrame(t) {
 
     parts.sort((a, b) => b.depth - a.depth).forEach((part) => part.draw());
 
-    drawLatent(embed(pose.w), embed(ghost.w), embed(f.p));
+    drawLatent(
+        embed(pose.w),
+        embed(ghost.w),
+        embed(f.p),
+        f.who ? C_BLOCK[f.who][0] : C_GOAL,
+    );
 }
 
 function animate() {
