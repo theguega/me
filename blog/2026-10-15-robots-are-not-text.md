@@ -50,7 +50,7 @@ The modules matter, but the interfaces between them matter more. If System 1 can
 
 Imitation learning is only as good as its data. Behaviour cloning learns the distribution it saw, and the real world drifts away from that distribution in small steps: lighting, object placement, wear on a gripper, a slightly different table. Each small error moves the robot into a state it never saw in training, and the errors compound. That's the gap between the demo video and the robot that fails on Monday.
 
-This is where RL matters. An imitation policy inherits the quality of its demonstrations. RL, given a reward and room to explore, can go past them. The hard part is doing that without a cluster of GPUs or a broken arm. Model-based RL is one answer: [SuperMimic](https://arxiv.org/abs/2610.28480) trains a single differentiable world model across all motions and backpropagates through short imagined rollouts, instead of the cluster-scale model-free RL most tracking pipelines use.
+This is where RL matters. An imitation policy inherits the quality of its demonstrations. RL, given a reward and room to explore, can go past them. The hard part is doing that without breaking the arm.
 
 Physical Intelligence's pi*0.6 (2025) takes a different route and stays on real hardware. A VLA is trained from its own experience on the robot, using a learned value function to weight which actions to reinforce, and human corrections are folded into the same loop. The policy improves on the tasks it already does, from the data its own deployments produce, rather than only from more demonstrations.
 
