@@ -52,7 +52,7 @@ Imitation learning is only as good as its data. Behaviour cloning learns the dis
 
 This is where RL matters. An imitation policy inherits the quality of its demonstrations. RL, given a reward and room to explore, can go past them. The hard part is doing that without a cluster of GPUs or a broken arm. Model-based RL is one answer: [SuperMimic](https://arxiv.org/abs/2610.28480) trains a single differentiable world model across all motions and backpropagates through short imagined rollouts, instead of the cluster-scale model-free RL most tracking pipelines use.
 
-Physical Intelligence's pi*0.6 (2025) takes a different route and stays on real hardware. A VLA is trained from its own experience on the robot, using a learned value function to weight which actions to reinforce, and human corrections are folded into the same loop. The policy improves on the tasks it already does, from the data its own deployments produce, rather than only from more demonstrations.
+Physical Intelligence's pi*0.6 (2025) learns from the bad data as well as the good. Its RECAP method trains a value function on everything the robot has done, successes, failures and human corrections included, then conditions the policy on the advantage of each action. The policy improves on the tasks it already does, from mixed experience it collected itself, rather than from clean demonstrations alone.
 
 ## Data Is an Operations Problem
 
